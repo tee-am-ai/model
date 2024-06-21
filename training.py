@@ -3,7 +3,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArgume
 import torch
 
 # Load the dataset
-df = pd.read_csv('b.csv', delimiter='|', names=['question', 'answer'])
+df = pd.read_csv('dataset/1.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8')
 
 # Prepare the dataset
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
@@ -22,9 +22,14 @@ class QADataset(torch.utils.data.Dataset):
         return len(self.inputs)
 
     def __getitem__(self, idx):
-        encodings = self.tokenizer(self.inputs[idx], truncation=True, padding='max_length', max_length=self.max_length, return_tensors="pt")
-        input_ids = encodings['input_ids'].squeeze()
-        attention_mask = encodings['attention_mask'].squeeze()
+        input_text = self.inputs[idx]
+        try:
+            encodings = self.tokenizer(input_text, truncation=True, padding='max_length', max_length=self.max_length, return_tensors="pt")
+            input_ids = encodings['input_ids'].squeeze()
+            attention_mask = encodings['attention_mask'].squeeze()
+        except Exception as e:
+            print(f"Error processing input_text ({idx}): {input_text}")
+            raise e
         return {'input_ids': input_ids, 'attention_mask': attention_mask, 'labels': input_ids}
 
 dataset = QADataset(inputs, tokenizer)
