@@ -4,7 +4,7 @@ import torch
 import csv
 
 # Load the dataset
-df = pd.read_csv('dataset/combined_output.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8', quoting=csv.QUOTE_NONE)
+df = pd.read_csv('dataset/0.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8', quoting=csv.QUOTE_NONE)
 
 # Prepare the dataset
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
