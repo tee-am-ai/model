@@ -1,9 +1,10 @@
 import pandas as pd
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments
 import torch
+import csv
 
 # Load the dataset
-df = pd.read_csv('dataset/1.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8')
+df = pd.read_csv('b.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8')
 
 # Prepare the dataset
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
