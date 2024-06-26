@@ -6,7 +6,7 @@ class GPT2Generator:
         self.model = GPT2LMHeadModel.from_pretrained(model_path)
         self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 
-    def generate_answer(self, question, max_length=100):
+    def generate_answer(self, question, max_length=120):
         # Encode the input question
         inputs = self.tokenizer.encode(question + self.tokenizer.eos_token, return_tensors='pt')
         # Generate the answer using the model
@@ -21,8 +21,8 @@ class GPT2Generator:
 
 # Example usage:
 def main():
-    generator = GPT2Generator(model_path='gpt2_model')
-    question = "beri aku pantun"
+    generator = GPT2Generator(model_path='fine_tuned_gpt2_model')
+    question = "aku kecewa?"
     answer = generator.generate_answer(question)
     print(f"Question: {question}")
     print(f"Answer: {answer}")
