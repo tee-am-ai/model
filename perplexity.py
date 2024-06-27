@@ -5,10 +5,10 @@ import torch
 from utils import QADataset
 
 # Load the dataset
-df = pd.read_csv('dataset/01.csv', delimiter='|', names=['question', 'answer'])
+df = pd.read_csv('datasets/clean.csv', delimiter='|', names=['question', 'answer'])
 
 # Prepare the dataset
-tokenizer = GPT2Tokenizer.from_pretrained('fine_tuned_gpt2_model')
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2_model')
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for evaluation
@@ -17,7 +17,7 @@ inputs = df['question'] + tokenizer.eos_token + df['answer']
 dataset = QADataset(inputs, tokenizer)
 
 # Load model
-model = GPT2LMHeadModel.from_pretrained('fine_tuned_gpt2_model')
+model = GPT2LMHeadModel.from_pretrained('gpt2_model')
 model.eval()
 
 # Calculate perplexity
