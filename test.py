@@ -35,7 +35,7 @@ class GPT2Generator:
 # Example usage:
 def main():
     generator = GPT2Generator(model_path='fine_tuned_gpt2_model')
-    question = "aku penat dengan kehidupan ini"
+    question = "apa ibu kota indonesia?"
     answer = generator.generate_answer(question)
     print(f"Question: {question}")
     print(f"Answer: {answer}")
