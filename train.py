@@ -4,7 +4,7 @@ from utils import QADataset
 import csv
 
 # Load the dataset
-df = pd.read_csv('datasets/clean.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8', quoting=csv.QUOTE_NONE)
+df = pd.read_csv('datasets/coba.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8', quoting=csv.QUOTE_NONE)
 
 # Prepare the dataset
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
@@ -39,5 +39,5 @@ trainer = Trainer(
 trainer.train()
 
 # Save the model
-model.save_pretrained('gpt2_model')
-tokenizer.save_pretrained('gpt2_model')
+model.save_pretrained('gpt2_model_coba')
+tokenizer.save_pretrained('gpt2_model_coba')
