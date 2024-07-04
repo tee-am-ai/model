@@ -6,7 +6,7 @@ if not os.path.exists('log_model'):
     os.makedirs('log_model')
 
 logging.basicConfig(
-    filename='log_model/generator.log',
+    filename='log_model/generator_coba.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
@@ -28,8 +28,8 @@ class GPT2Generator:
         return answer
 
 def main():
-    generator = GPT2Generator(model_path='fine_tuned_gpt2_model1')
-    question = "siapa kamu?"
+    generator = GPT2Generator(model_path='fine_tuned_gpt2_model_coba')
+    question = "i can't find my phone, what should i do?"
     answer = generator.generate_answer(question)
     print(f"Question: {question}")
     print(f"Answer: {answer}")
