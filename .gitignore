@@ -161,5 +161,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-gpt2_model/
-results/
+*gpt2_model*/
+results*/
+fine_tuning*/
+log*/
