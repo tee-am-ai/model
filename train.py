@@ -1,22 +1,7 @@
 import pandas as pd
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
 import csv
-from torch.utils.data import Dataset
-
-# Define the QADataset class
-class QADataset(Dataset):
-    def __init__(self, texts, tokenizer):
-        self.texts = texts
-        self.tokenizer = tokenizer
-
-    def __len__(self):
-        return len(self.texts)
-
-    def __getitem__(self, idx):
-        encodings = self.tokenizer(self.texts[idx], truncation=True, padding='max_length', max_length=64, return_tensors='pt')
-        input_ids = encodings.input_ids[0]
-        attention_mask = encodings.attention_mask[0]
-        return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
+from utils import QADataset
 
 # Load the dataset
 def filter_valid_rows(row):
