@@ -4,7 +4,7 @@ from utils import logging_config, GPT2Generator
 logging_config('log_model', 'generator_test.log')
 
 def main():
-    generator = GPT2Generator(model_path='fine _tuned_gpt2_model')
+    generator = GPT2Generator(model_path='fine_tuned_gpt2_model')
     
     while True:
         question = input("Masukkan pertanyaan (atau ketik 'exit' untuk keluar): ")
