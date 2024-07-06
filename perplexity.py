@@ -2,7 +2,6 @@ import pandas as pd
 import torch
 import csv
 import logging
-import os
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 from torch.utils.data import DataLoader
 from utils import QADataset, logging_config
