@@ -8,7 +8,7 @@ from utils import QADataset, logging_config
 
 logging_config('log_model', 'generator_perplexity.log')
     
-model_path = 'gpt2_model'
+model_path = 'fine_tuned_gpt2_model'
 
 # Load the dataset
 def filter_valid_rows(row):
@@ -34,7 +34,7 @@ model = GPT2LMHeadModel.from_pretrained(model_path)
 model.eval()
 
 # Calculate perplexity
-def calculate_perplexity(model, dataset, batch_size=2):
+def calculate_perplexity(model, dataset, batch_size=6):
     model.eval()
     data_loader = DataLoader(dataset, batch_size=batch_size)
     total_loss = 0.0
