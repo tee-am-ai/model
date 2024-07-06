@@ -33,14 +33,14 @@ data_collator = DataCollatorForLanguageModeling(
 
 # Define training arguments
 training_args = TrainingArguments(
-    output_dir='./results',
-    num_train_epochs=3,
-    per_device_train_batch_size=4,
+    output_dir='./fine_tuning_results',
+    num_train_epochs=5,
+    per_device_train_batch_size=6,
     warmup_steps=500,
     weight_decay=0.01,
-    logging_dir='./logs',
+    logging_dir='./fine_tuning_logs',
     logging_steps=10,
-    save_steps=500,
+    save_steps=200,
     save_total_limit=2,
 )
 
