@@ -4,10 +4,10 @@ import csv
 import logging
 import os
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader
 from utils import QADataset, logging_config
 
-
+logging_config('log_model', 'generator_perplexity.log')
     
 model_path = 'gpt2_model'
 
