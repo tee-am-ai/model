@@ -1,14 +1,48 @@
 import pandas as pd
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Dataset
 import torch
-from utils import QADataset
+import csv
+import logging
+import os
+
+if not os.path.exists('log_model'):
+    os.makedirs('log_model')
+
+logging.basicConfig(
+    filename='log_model/generator_perplexity.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
+class QADataset(Dataset):
+    def __init__(self, texts, tokenizer):
+        self.texts = texts
+        self.tokenizer = tokenizer
+
+    def __len__(self):
+        return len(self.texts)
+
+    def __getitem__(self, idx):
+        encodings = self.tokenizer(self.texts[idx], truncation=True, padding='max_length', max_length=64, return_tensors='pt')
+        input_ids = encodings.input_ids[0]
+        attention_mask = encodings.attention_mask[0]
+        return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
+    
+model_path = 'gpt2_model'
 
 # Load the dataset
-df = pd.read_csv('datasets/clean.csv', delimiter='|', names=['question', 'answer'])
+def filter_valid_rows(row):
+    return len(row) == 2
+
+with open('datasets/clean.csv', 'r', encoding='utf-8') as file:
+    reader = csv.reader(file, delimiter='|')
+    filtered_rows = [row for row in reader if filter_valid_rows(row)]
+
+df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Prepare the dataset
-tokenizer = GPT2Tokenizer.from_pretrained('fine_tuned_gpt2_model1')
+tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for evaluation
@@ -17,7 +51,7 @@ inputs = df['question'] + tokenizer.eos_token + df['answer']
 dataset = QADataset(inputs, tokenizer)
 
 # Load model
-model = GPT2LMHeadModel.from_pretrained('fine_tuned_gpt2_model1')
+model = GPT2LMHeadModel.from_pretrained(model_path)
 model.eval()
 
 # Calculate perplexity
@@ -39,3 +73,7 @@ def calculate_perplexity(model, dataset, batch_size=2):
 
 perplexity = calculate_perplexity(model, dataset)
 print(f'Perplexity: {perplexity}')
+
+logging.info(f"model: {model_path}")
+logging.info(f'Perplexity: {perplexity}')
+logging.info("------------------------------------------\n")
