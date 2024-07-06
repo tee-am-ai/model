@@ -1,33 +1,13 @@
 import pandas as pd
-from transformers import GPT2Tokenizer, GPT2LMHeadModel
-from torch.utils.data import DataLoader, Dataset
 import torch
 import csv
 import logging
 import os
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from torch.utils.data import DataLoader, Dataset
+from utils import QADataset, logging_config
 
-if not os.path.exists('log_model'):
-    os.makedirs('log_model')
 
-logging.basicConfig(
-    filename='log_model/generator_perplexity.log',
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-
-class QADataset(Dataset):
-    def __init__(self, texts, tokenizer):
-        self.texts = texts
-        self.tokenizer = tokenizer
-
-    def __len__(self):
-        return len(self.texts)
-
-    def __getitem__(self, idx):
-        encodings = self.tokenizer(self.texts[idx], truncation=True, padding='max_length', max_length=64, return_tensors='pt')
-        input_ids = encodings.input_ids[0]
-        attention_mask = encodings.attention_mask[0]
-        return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
     
 model_path = 'gpt2_model'
 
