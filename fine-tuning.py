@@ -14,7 +14,7 @@ with open('datasets/clean.csv', 'r', encoding='utf-8') as file:
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Prepare the dataset
-tokenizer = GPT2Tokenizer.from_pretrained('model/fine_tuned_gpt2_model')
+tokenizer = GPT2Tokenizer.from_pretrained('model/fine_tuned_gpt2_model1')
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for training
@@ -23,7 +23,7 @@ inputs = df['question'] + tokenizer.eos_token + df['answer']
 dataset = QADataset(inputs, tokenizer)
 
 # Load model
-model = GPT2LMHeadModel.from_pretrained('model/fine_tuned_gpt2_model')
+model = GPT2LMHeadModel.from_pretrained('model/fine_tuned_gpt2_model1')
 
 # Define data collator
 data_collator = DataCollatorForLanguageModeling(
@@ -33,12 +33,12 @@ data_collator = DataCollatorForLanguageModeling(
 
 # Define training arguments
 training_args = TrainingArguments(
-    output_dir='./result/fine_tuning_results1',
-    num_train_epochs=5,
+    output_dir='./result/fine_tuning_results2',
+    num_train_epochs=10,
     per_device_train_batch_size=8,
     warmup_steps=500,
     weight_decay=0.01,
-    logging_dir='./fine_tuning_logs1',
+    logging_dir='./fine_tuning_logs2',
     logging_steps=10,
     save_steps=200,
     save_total_limit=2,
@@ -56,5 +56,5 @@ trainer = Trainer(
 trainer.train()
 
 # Save the model
-model.save_pretrained('model/fine_tuned_gpt2_model1')
-tokenizer.save_pretrained('model/fine_tuned_gpt2_model1')
+model.save_pretrained('model/fine_tuned_gpt2_model2')
+tokenizer.save_pretrained('model/fine_tuned_gpt2_model2')
