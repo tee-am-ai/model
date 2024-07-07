@@ -14,7 +14,7 @@ with open('datasets/clean.csv', 'r', encoding='utf-8') as file:
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Prepare the dataset
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2_model')
+tokenizer = GPT2Tokenizer.from_pretrained('model/fine_tuned_gpt2_model')
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for training
@@ -23,7 +23,7 @@ inputs = df['question'] + tokenizer.eos_token + df['answer']
 dataset = QADataset(inputs, tokenizer)
 
 # Load model
-model = GPT2LMHeadModel.from_pretrained('gpt2_model')
+model = GPT2LMHeadModel.from_pretrained('model/fine_tuned_gpt2_model')
 
 # Define data collator
 data_collator = DataCollatorForLanguageModeling(
@@ -56,5 +56,5 @@ trainer = Trainer(
 trainer.train()
 
 # Save the model
-model.save_pretrained('fine_tuned_gpt2_model')
-tokenizer.save_pretrained('fine_tuned_gpt2_model')
+model.save_pretrained('model/fine_tuned_gpt2_model')
+tokenizer.save_pretrained('model/fine_tuned_gpt2_model')
