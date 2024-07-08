@@ -8,7 +8,7 @@ from utils import QADataset, logging_config
 
 logging_config('log_model', 'generator_perplexity.log')
     
-model_path = 'model/fine_tuned_gpt2_model1'
+model_path = 'model/fine_tuned_gpt2_model2'
 
 # Load the dataset
 def filter_valid_rows(row):
