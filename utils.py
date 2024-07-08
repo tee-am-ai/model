@@ -4,6 +4,8 @@ from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 import logging
 import os
 
+
+# Define the GPT2Generator class
 class GPT2Generator:
     def __init__(self, model_path='gpt2'):
         self.model_path = model_path
@@ -30,6 +32,7 @@ class GPT2Generator:
         bleu_score = sentence_bleu([reference_tokens], generated_tokens, smoothing_function=smoothing_function)
         return bleu_score
 
+
 # Define the QADataset class
 class QADataset(Dataset):
     def __init__(self, texts, tokenizer):
@@ -44,6 +47,7 @@ class QADataset(Dataset):
         input_ids = encodings.input_ids[0]
         attention_mask = encodings.attention_mask[0]
         return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
+
 
 # Logging configuration
 def logging_config(log_dir, log_filename):
