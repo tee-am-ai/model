@@ -7,7 +7,8 @@ from utils import QADataset
 def filter_valid_rows(row):
     return len(row) == 2
 
-with open('datasets/clean.csv', 'r', encoding='utf-8') as file:
+name = 'clean'
+with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
     filtered_rows = [row for row in reader if filter_valid_rows(row)]
 
@@ -33,7 +34,7 @@ data_collator = DataCollatorForLanguageModeling(
 
 # Define training arguments
 training_args = TrainingArguments(
-    output_dir='./results',
+    output_dir=f'./result/results_{name}',
     num_train_epochs=3,
     per_device_train_batch_size=4,
     warmup_steps=500,
@@ -56,5 +57,6 @@ trainer = Trainer(
 trainer.train()
 
 # Save the model
-model.save_pretrained('model/gpt2_model')
-tokenizer.save_pretrained('model/gpt2_model')
+model_path = f'model/gpt2_model_{name}'
+model.save_pretrained(model_path)
+tokenizer.save_pretrained(model_path)
