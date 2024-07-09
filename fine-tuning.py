@@ -7,14 +7,16 @@ from utils import QADataset
 def filter_valid_rows(row):
     return len(row) == 2
 
-with open('datasets/clean.csv', 'r', encoding='utf-8') as file:
+name = 'clean'
+with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
     filtered_rows = [row for row in reader if filter_valid_rows(row)]
 
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Prepare the dataset
-tokenizer = GPT2Tokenizer.from_pretrained('model/fine_tuned_gpt2_model1')
+model_name = 'model/fine_tuned_gpt2_model1'
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for training
@@ -23,7 +25,7 @@ inputs = df['question'] + tokenizer.eos_token + df['answer']
 dataset = QADataset(inputs, tokenizer)
 
 # Load model
-model = GPT2LMHeadModel.from_pretrained('model/fine_tuned_gpt2_model1')
+model = GPT2LMHeadModel.from_pretrained(model_name)
 
 # Define data collator
 data_collator = DataCollatorForLanguageModeling(
@@ -56,5 +58,6 @@ trainer = Trainer(
 trainer.train()
 
 # Save the model
-model.save_pretrained('model/fine_tuned_gpt2_model2')
-tokenizer.save_pretrained('model/fine_tuned_gpt2_model2')
+model_path = 'model/fine_tuned_gpt2_model2'
+model.save_pretrained(model_path)
+tokenizer.save_pretrained(model_path)
