@@ -14,7 +14,8 @@ model_path = 'model/fine_tuned_gpt2_model2'
 def filter_valid_rows(row):
     return len(row) == 2
 
-with open('datasets/clean.csv', 'r', encoding='utf-8') as file:
+name = 'clean'
+with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
     filtered_rows = [row for row in reader if filter_valid_rows(row)]
 
