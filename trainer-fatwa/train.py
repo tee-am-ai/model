@@ -1,7 +1,7 @@
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, TextDataset, DataCollatorForLanguageModeling
 
 # Inisialisasi model dan tokenizer
-model_name = "gpt-2"
+model_name = "gpt2"
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 model = GPT2LMHeadModel.from_pretrained(model_name)
 
