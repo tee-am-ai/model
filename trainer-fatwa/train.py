@@ -1,31 +1,31 @@
-import torch
-from transformers import GPT2LMHeadModel, GPT2Tokenizer, Trainer, TrainingArguments, TextDataset, DataCollatorForLanguageModeling
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, TextDataset, DataCollatorForLanguageModeling
 
-# Load GPT-2 model and tokenizer
-model_name = "gpt2"
-model = GPT2LMHeadModel.from_pretrained(model_name)
+# Inisialisasi model dan tokenizer
+model_name = "gpt-2"
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+model = GPT2LMHeadModel.from_pretrained(model_name)
 
-# Function to load dataset
+# Membuat dataset
 def load_dataset(file_path, tokenizer):
-    return TextDataset(
+    dataset = TextDataset(
         tokenizer=tokenizer,
         file_path=file_path,
         block_size=128
     )
+    return dataset
 
-# Create data collator
+train_dataset = load_dataset("train_data.txt", tokenizer)
+eval_dataset = load_dataset("eval_data.txt", tokenizer)
+
+# Membuat data collator
 data_collator = DataCollatorForLanguageModeling(
     tokenizer=tokenizer,
     mlm=False,
 )
 
-# Load dataset
-dataset = load_dataset("dataset.txt", tokenizer)
-
-# Define training arguments
+# Menentukan argument pelatihan
 training_args = TrainingArguments(
-    output_dir='./results',
+    output_dir="./gpt2-finetuned",
     overwrite_output_dir=True,
     num_train_epochs=3,
     per_device_train_batch_size=4,
@@ -33,13 +33,14 @@ training_args = TrainingArguments(
     save_total_limit=2,
 )
 
-# Create Trainer
+# Membuat Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
     data_collator=data_collator,
-    train_dataset=dataset,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
 )
 
-# Train the model
+# Memulai pelatihan
 trainer.train()
