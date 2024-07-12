@@ -44,3 +44,6 @@ trainer = Trainer(
 
 # Memulai pelatihan
 trainer.train()
+
+model.save_pretrained("save/model")
+tokenizer.save_pretrained("save/tokenizer")
