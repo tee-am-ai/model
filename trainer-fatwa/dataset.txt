@@ -1,0 +1,3 @@
+Hello, how are you? <|endoftext|> I'm fine, thank you! How about you? <|endoftext|>
+What's your name? <|endoftext|> I'm an AI chatbot. <|endoftext|>
+Tell me a joke. <|endoftext|> Why did the scarecrow win an award? Because he was outstanding in his field! <|endoftext|>
