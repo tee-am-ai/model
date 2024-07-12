@@ -52,7 +52,7 @@ data_collator = DataCollatorForLanguageModeling(
     mlm=False,
 )
 
-epoch = 10
+epoch = 20
 batch_size = 8
 # Define training arguments
 training_args = TrainingArguments(
