@@ -1,24 +1,17 @@
-from flask import Flask, request, jsonify
-import torch
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
 
-app = Flask(__name__)
+# Muat model dan tokenizer yang telah dilatih
+model_path = "path/to/save/model"
+tokenizer = GPT2Tokenizer.from_pretrained(model_path)
+model = GPT2LMHeadModel.from_pretrained(model_path)
 
-# Load trained model and tokenizer
-model_name = "gpt2"
-model = GPT2LMHeadModel.from_pretrained(model_name)
-tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+# Fungsi untuk menghasilkan teks
+def generate_text(prompt, max_length=50):
+    inputs = tokenizer.encode(prompt, return_tensors="pt")
+    outputs = model.generate(inputs, max_length=max_length, num_return_sequences=1, no_repeat_ngram_size=2, early_stopping=True)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-@app.route('/chat', methods=['POST'])
-def chat():
-    input_data = request.json
-    prompt = input_data['prompt']
-    
-    inputs = tokenizer.encode(prompt, return_tensors='pt')
-    outputs = model.generate(inputs, max_length=50, num_return_sequences=1)
-    response = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    
-    return jsonify({'response': response})
-
-if __name__ == '__main__':
-    app.run(debug=True)
+# Contoh pengujian
+prompt = "Hari ini saya merasa sangat bahagia karena"
+generated_text = generate_text(prompt)
+print(generated_text)
