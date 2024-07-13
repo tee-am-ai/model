@@ -16,4 +16,7 @@ class ChatData(Dataset):
             except:
                 break
 
+        self.X = self.X[:5000]
+        
+        print(self.X[0])
         
