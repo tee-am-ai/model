@@ -31,3 +31,8 @@ trainer = Trainer(
     args=training_args,
     train_dataset=tokenized_dataset,
 )
+
+trainer.train()
+
+trainer.save_model("trained_gpt2_model")
+tokenizer.save_pretrained("trained_gpt2_model")
