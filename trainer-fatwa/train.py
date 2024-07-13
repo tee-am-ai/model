@@ -25,3 +25,9 @@ training_args = TrainingArguments(
     save_steps=10_000,
     save_total_limit=2,
 )
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_dataset,
+)
