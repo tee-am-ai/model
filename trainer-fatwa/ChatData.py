@@ -26,4 +26,7 @@ class ChatData(Dataset):
 
     def __len__(self):
         return len(self.X)
+    
+    def __getitem__(self, idx):
+        return self.input_ids[idx], self.attention_mask[idx]
         
