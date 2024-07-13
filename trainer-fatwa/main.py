@@ -40,3 +40,5 @@ tokenizer.add_tokens(["<bot>:"])
 
 model = GPT2LMHeadModel.from_pretrained("gpt2")
 model.resize_token_embeddings(len(tokenizer))
+
+model = model.to(device)
