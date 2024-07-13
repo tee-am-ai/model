@@ -42,3 +42,6 @@ model = GPT2LMHeadModel.from_pretrained("gpt2")
 model.resize_token_embeddings(len(tokenizer))
 
 model = model.to(device)
+
+chatData = ChatData("./chat_data.json", tokenizer)
+chatData =  DataLoader(chatData, batch_size=64)
