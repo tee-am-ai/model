@@ -30,3 +30,8 @@ def infer(inp):
     return output
 
 device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+tokenizer.add_special_tokens({"pad_token": "<pad>", 
+                                "bos_token": "<startofstring>",
+                                "eos_token": "<endofstring>"})
