@@ -45,3 +45,5 @@ model = model.to(device)
 
 chatData = ChatData("./chat_data.json", tokenizer)
 chatData =  DataLoader(chatData, batch_size=64)
+
+model.train()
