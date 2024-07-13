@@ -3,3 +3,6 @@ from datasets import Dataset
 from transformers import GPT2LMHeadModel, GPT2Tokenizer, Trainer, TrainingArguments
 
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+
+def tokenize_text(examples):
+    return tokenizer(examples['text'], truncation=True, padding="max_length", max_length=512)
