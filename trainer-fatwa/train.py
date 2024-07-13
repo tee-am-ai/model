@@ -4,6 +4,8 @@ from transformers import GPT2LMHeadModel, GPT2Tokenizer, Trainer, TrainingArgume
 
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
+tokenizer.pad_token = tokenizer.eos_token
+
 def tokenize_text(examples):
     return tokenizer(examples['text'], truncation=True, padding="max_length", max_length=512)
 
