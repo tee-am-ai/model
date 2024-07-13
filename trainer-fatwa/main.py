@@ -19,3 +19,12 @@ def train(chatData, model, optim):
             optim.step()
         torch.save(model.state_dict(), "model_state.pt")
         print(infer("hello how are you"))
+
+def infer(inp):
+    inp = "<startofstring> "+inp+" <bot>: "
+    inp = tokenizer(inp, return_tensors="pt")
+    X = inp["input_ids"].to(device)
+    a = inp["attention_mask"].to(device)
+    output = model.generate(X, attention_mask=a )
+    output = tokenizer.decode(output[0])
+    return output
