@@ -28,3 +28,5 @@ def infer(inp):
     output = model.generate(X, attention_mask=a )
     output = tokenizer.decode(output[0])
     return output
+
+device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
