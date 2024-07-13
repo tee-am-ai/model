@@ -10,3 +10,9 @@ def tokenize_text(examples):
 df = pd.read_csv("../dialogs.csv", delimiter='|')
 
 df['text'] = df['question'] + " " + df['answer']
+
+dataset = Dataset.from_pandas(df[['text']])
+
+tokenized_dataset = dataset.map(tokenize_text, batched=True, remove_columns=["text"])
+
+model = GPT2LMHeadModel.from_pretrained("gpt2")
