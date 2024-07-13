@@ -47,3 +47,9 @@ chatData = ChatData("./chat_data.json", tokenizer)
 chatData =  DataLoader(chatData, batch_size=64)
 
 model.train()
+
+optim = Adam(model.parameters(), lr=1e-3)
+
+print("training .... ")
+train(chatData, model, optim)
+
