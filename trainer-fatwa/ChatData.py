@@ -9,3 +9,11 @@ class ChatData(Dataset):
         for i in self.data:
             for j in i['dialog']:
                 self.X.append(j['text'])
+
+        for idx, i in enumerate(self.X):
+            try:
+                self.X[idx] = "<startofstring> "+i+" <bot>: "+self.X[idx+1]+" <endofstring>"
+            except:
+                break
+
+        
