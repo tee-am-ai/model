@@ -53,3 +53,7 @@ optim = Adam(model.parameters(), lr=1e-3)
 print("training .... ")
 train(chatData, model, optim)
 
+print("infer from model : ")
+while True:
+  inp = input()
+  print(infer(inp))
