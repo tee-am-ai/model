@@ -10,6 +10,7 @@ def train(chatData, model, optim):
     epochs = 12
 
     for i in tqdm.tqdm(range(epochs)):
+        c = 1
         for X, a in chatData:
             X = X.to(device)
             a = a.to(device)
@@ -17,7 +18,10 @@ def train(chatData, model, optim):
             loss = model(X, attention_mask=a, labels=X).loss
             loss.backward()
             optim.step()
+            print(f"epoch {i} batch {c} loss : {loss.item()}")
+            c+=1
         torch.save(model.state_dict(), "model_state.pt")
+        print("model saved")
         print(infer("hello how are you"))
 
 def infer(inp):
@@ -55,5 +59,5 @@ train(chatData, model, optim)
 
 print("infer from model : ")
 while True:
-  inp = input()
-  print(infer(inp))
+#   inp = input()
+  print(infer("hey"))
