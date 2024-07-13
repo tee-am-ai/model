@@ -23,4 +23,7 @@ class ChatData(Dataset):
         self.X_encoded = tokenizer(self.X,max_length=40, truncation=True, padding="max_length", return_tensors="pt")
         self.input_ids = self.X_encoded['input_ids']
         self.attention_mask = self.X_encoded['attention_mask']
+
+    def __len__(self):
+        return len(self.X)
         
