@@ -7,7 +7,9 @@ tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 tokenizer.pad_token = tokenizer.eos_token
 
 def tokenize_text(examples):
-    return tokenizer(examples['text'], truncation=True, padding="max_length", max_length=512)
+    inputs = tokenizer(examples['text'], truncation=True, padding="max_length", max_length=512)
+    inputs['labels'] = inputs['input_ids'].copy()
+    return inputs
 
 df = pd.read_csv("dialogs.csv", delimiter='|')
 
