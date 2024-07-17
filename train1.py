@@ -15,7 +15,7 @@ def filter_valid_rows(row):
     return len(row) == 2 and all(row)
 
 # Load the dataset
-num = '01'
+num = 'coba'
 filtered_rows = []
 with open(f'datasets/{num}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|', quoting=csv.QUOTE_NONE)
@@ -53,13 +53,13 @@ data_collator = DataCollatorForLanguageModeling(
 )
 
 epoch = 20
-batch_size = 8
+batch_size = 24
 # Define training arguments
 training_args = TrainingArguments(
     output_dir=f'./result/results_coba{num}-{epoch}-{batch_size}',
     num_train_epochs=epoch,
     per_device_train_batch_size=batch_size,
-    per_device_eval_batch_size=2,
+    per_device_eval_batch_size=4,
     learning_rate=5e-5,
     warmup_steps=500,
     weight_decay=0.01,
@@ -68,10 +68,14 @@ training_args = TrainingArguments(
     save_steps=500,
     save_total_limit=2,
     fp16=True, 
+    # eval_strategy="epoch",
+    # eval_steps=500,
 )
 
-# Define accuracy metric
-metric = evaluate.load("accuracy", trust_remote_code=True)
+# Load metrics
+accuracy_metric = evaluate.load("accuracy", trust_remote_code=True)
+bleu_metric = evaluate.load("bleu", trust_remote_code=True)
+rouge_metric = evaluate.load("rouge", trust_remote_code=True)
 
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
@@ -91,7 +95,15 @@ def compute_metrics(eval_pred):
     predictions = predictions[mask]
     labels = labels[mask]
 
-    return metric.compute(predictions=predictions, references=labels)
+    accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
+    bleu = bleu_metric.compute(predictions=predictions, references=labels)
+    rouge = rouge_metric.compute(predictions=predictions, references=labels)
+
+    return {
+        "accuracy": accuracy,
+        "bleu": bleu,
+        "rouge": rouge,
+    }
 
 # Trainer
 trainer = Trainer(
