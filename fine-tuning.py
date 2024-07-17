@@ -47,12 +47,12 @@ training_args = TrainingArguments(
 )
 
 # Create Trainer
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=dataset,
-    data_collator=data_collator,
-)
+# trainer = Trainer(
+#     model=model,
+#     args=training_args,
+#     train_dataset=dataset,
+#     data_collator=data_collator,
+# )
 
 # Train the model
 trainer.train()
