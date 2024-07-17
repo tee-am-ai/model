@@ -1,16 +1,10 @@
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 import os
 import logging
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from utils import logging_config
 
-if not os.path.exists('log_model'):
-    os.makedirs('log_model')
-
-logging.basicConfig(
-    filename='log_model/generator_bleu.log',
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+logging_config('log_model', 'generator_bleu.log')
 
 class GPT2Generator:
     def __init__(self, model_path='gpt2'):
