@@ -55,9 +55,9 @@ trainer = Trainer(
 )
 
 # Train the model
-trainer.train()
+# trainer.train()
 
-# Save the model
-model_path = 'model/fine_tuned_gpt2_model2'
-model.save_pretrained(model_path)
-tokenizer.save_pretrained(model_path)
+# # Save the model
+# model_path = 'model/fine_tuned_gpt2_model2'
+# model.save_pretrained(model_path)
+# tokenizer.save_pretrained(model_path)
