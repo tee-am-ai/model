@@ -1,11 +1,11 @@
-import pandas as pd
+import pandas as pd # type: ignore
 import numpy as np
 import logging
 import csv
-import torch
-import evaluate
+import torch # type: ignore
+import evaluate # type: ignore
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
-from sklearn.model_selection import train_test_split as tts
+from sklearn.model_selection import train_test_split as tts # type: ignore
 from utils import QADataset, logging_config
 
 logging_config('log_model', 'generator_accuracy.log')
