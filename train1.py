@@ -5,7 +5,7 @@ import csv
 import torch
 import evaluate
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split as tts
 from utils import QADataset, logging_config
 
 logging_config('log_model', 'generator_accuracy.log')
@@ -26,7 +26,7 @@ with open(f'datasets/{num}.csv', 'r', encoding='utf-8') as file:
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Split dataset into training and test sets
-train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
+train_df, test_df = tts(df, test_size=0.2, random_state=42)
 
 # Reset index to ensure continuous indexing
 train_df = train_df.reset_index(drop=True)
