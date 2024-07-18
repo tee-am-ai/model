@@ -42,11 +42,11 @@ class QADataset(Dataset):
     def __len__(self):
         return len(self.texts)
 
-    # def __getitem__(self, idx):
-    #     encodings = self.tokenizer(self.texts[idx], truncation=True, padding='max_length', max_length=64, return_tensors='pt')
-    #     input_ids = encodings.input_ids[0]
-    #     attention_mask = encodings.attention_mask[0]
-    #     return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
+    def __getitem__(self, idx):
+        encodings = self.tokenizer(self.texts[idx], truncation=True, padding='max_length', max_length=64, return_tensors='pt')
+        input_ids = encodings.input_ids[0]
+        attention_mask = encodings.attention_mask[0]
+        return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
 
 
 # Logging configuration
