@@ -4,22 +4,22 @@ latih model tee-am-ai dengan gpt2
 
 ## Aktivasi virtual environment di cmd
 
-1. buat virtual environment
+1. Buat virtual environment
 ```bash
 python -m venv .venv
 ```
 
-2. aktivasi virtual environment
+2. Aktivasi virtual environment
 ```bash
 .venv\Scripts\activate
 ```
 
-3. install semua library
+3. Install semua library
 ```bash
 pip install -r requirements.txt
 ```
 
-4. running model
+4. Running model
 ```bash
 python train.py
 ```
