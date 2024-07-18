@@ -87,9 +87,9 @@ def compute_metrics(eval_pred):
     
     predictions = torch.argmax(logits, dim=-1)
     
-#     # Flatten tensors to 1D
-#     predictions = predictions.view(-1)
-#     labels = labels.view(-1)
+    # Flatten tensors to 1D
+    predictions = predictions.view(-1)
+    labels = labels.view(-1)
     
 #     # Remove ignored index (-100) in labels
 #     mask = labels != -100
