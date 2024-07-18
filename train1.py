@@ -124,8 +124,8 @@ path = f'model/gpt2_coba{num}-{epoch}-{batch_size}'
 model.save_pretrained(path)
 tokenizer.save_pretrained(path)
 
-# # Evaluate model
-# eval_results = trainer.evaluate()
+# Evaluate model
+eval_results = trainer.evaluate()
 
 # # Print evaluation results, including accuracy
 # print(f"Evaluation Results: {eval_results}")
