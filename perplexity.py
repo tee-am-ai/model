@@ -7,8 +7,6 @@ from torch.utils.data import DataLoader
 from utils import QADataset, logging_config
 
 logging_config('log_model', 'generator_perplexity.log')
-    
-model_path = 'model/fine_tuned_gpt2_model2'
 
 # Load the dataset
 def filter_valid_rows(row):
@@ -22,6 +20,7 @@ with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Prepare the dataset
+model_path = 'model/fine_tuned_gpt2_model2'
 tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 tokenizer.pad_token = tokenizer.eos_token
 
