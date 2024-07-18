@@ -73,9 +73,9 @@ training_args = TrainingArguments(
 )
 
 # Load metrics
-accuracy_metric = evaluate.load("accuracy", trust_remote_code=True)
+# accuracy_metric = evaluate.load("accuracy", trust_remote_code=True)
 bleu_metric = evaluate.load("bleu", trust_remote_code=True)
-rouge_metric = evaluate.load("rouge", trust_remote_code=True)
+# rouge_metric = evaluate.load("rouge", trust_remote_code=True)
 
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
@@ -95,14 +95,14 @@ def compute_metrics(eval_pred):
     predictions = predictions[mask]
     labels = labels[mask]
 
-    accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
+    # accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
     bleu = bleu_metric.compute(predictions=predictions, references=labels)
-    rouge = rouge_metric.compute(predictions=predictions, references=labels)
+    # rouge = rouge_metric.compute(predictions=predictions, references=labels)
 
     return {
-        "accuracy": accuracy,
+        # "accuracy": accuracy,
         "bleu": bleu,
-        "rouge": rouge,
+        # "rouge": rouge,
     }
 
 # Trainer
@@ -128,6 +128,6 @@ eval_results = trainer.evaluate()
 
 # Print evaluation results, including accuracy
 print(f"Evaluation results: {eval_results}")
-logging.info(f"model: {path}")
+logging.info(f"Model: {path}")
 logging.info(f"Evaluation results: {eval_results}")
 logging.info("------------------------------------------\n")
