@@ -28,8 +28,8 @@ class GPT2Generator:
     def calculate_bleu_score(self, reference, generated):
         reference_tokens = self.tokenizer.tokenize(reference)
         generated_tokens = self.tokenizer.tokenize(generated)
-        # smoothing_function = SmoothingFunction().method4
-        # bleu_score = sentence_bleu([reference_tokens], generated_tokens, smoothing_function=smoothing_function)
+        smoothing_function = SmoothingFunction().method4
+        bleu_score = sentence_bleu([reference_tokens], generated_tokens, smoothing_function=smoothing_function)
         return bleu_score
 
 # Example usage:
