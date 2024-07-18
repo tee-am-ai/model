@@ -73,9 +73,9 @@ training_args = TrainingArguments(
 )
 
 # Load metrics
-accuracy_metric = evaluate.load("accuracy", trust_remote_code=True)
-bleu_metric = evaluate.load("bleu", trust_remote_code=True)
-rouge_metric = evaluate.load("rouge", trust_remote_code=True)
+# accuracy_metric = evaluate.load("accuracy", trust_remote_code=True)
+# bleu_metric = evaluate.load("bleu", trust_remote_code=True)
+# rouge_metric = evaluate.load("rouge", trust_remote_code=True)
 
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
