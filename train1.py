@@ -53,8 +53,8 @@ data_collator = DataCollatorForLanguageModeling(
     mlm=False,
 )
 
-# epoch = 20
-# batch_size = 24
+epoch = 20
+batch_size = 24
 # # Define training arguments
 # training_args = TrainingArguments(
 #     output_dir=f'./result/results_coba{num}-{epoch}-{batch_size}',
