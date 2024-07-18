@@ -37,8 +37,8 @@ def main():
     generator = GPT2Generator(model_path='gpt2_model_coba')
 
     # Example usage to generate and evaluate BLEU score
-    example_question = "ibukota indonesia apa?"
-    reference_answer = "jakarta"
+    example_question = "ibukota indonesia adalah"
+    reference_answer = "dki jakarta"
 
     generated_answer = generator.generate_answer(example_question)
     print(f"Question: {example_question}")
