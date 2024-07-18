@@ -5,26 +5,26 @@ Latih model tee-am-ai dengan gpt2
 ## Aktivasi virtual environment di cmd
 
 1. Buat virtual environment
-    ```python
+    ```sh
     python -m venv .venv
     ```
 
 2. Aktivasi virtual environment
-    ```python
+    ```sh
     .venv\Scripts\activate
     ```
 
 3. Install semua library
-    ```python
+    ```sh
     pip install -r requirements.txt
     ```
 
 4. Running model
-    ```python
+    ```sh
     python train.py
     ```
 
 5. Testing model latih
-    ```python
+    ```sh
     python test.py
     ```
