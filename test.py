@@ -13,8 +13,8 @@ def main():
             print("Terminating the program...")
             break
         
-        # answer = generator.generate_answer(question)
-        # print(f"Jawaban: {answer}")
+        answer = generator.generate_answer(question)
+        print(f"Jawaban: {answer}")
 
         # Log the result
         logging.info(f"Model: {generator.model_path}")
