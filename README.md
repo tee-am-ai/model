@@ -6,9 +6,9 @@ Latih model tee-am-ai dengan gpt2
 
 1. Buat virtual environment
 
-    <div style="border-radius: 10px; background: #f6f8fa; padding: 10px;">
-        <pre><code>python -m venv .venv</code></pre>
-    </div>
+    ```bash
+    python -m venv .venv
+    ```
 
 2. Aktivasi virtual environment
 
