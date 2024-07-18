@@ -32,10 +32,10 @@ train_df, test_df = tts(df, test_size=0.2, random_state=42)
 train_df = train_df.reset_index(drop=True)
 test_df = test_df.reset_index(drop=True)
 
-# # Prepare the dataset
-# model_name = 'gpt22'
-# tokenizer = GPT2Tokenizer.from_pretrained(model_name)
-# tokenizer.pad_token = tokenizer.eos_token
+# Prepare the dataset
+model_name = 'gpt22'
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+tokenizer.pad_token = tokenizer.eos_token
 
 # # Combine question and answer into a single string for training
 # inputs_train = train_df['question'] + tokenizer.eos_token + train_df['answer']
