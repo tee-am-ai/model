@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas as pd # type: ignore
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
 import csv
 from utils import QADataset
