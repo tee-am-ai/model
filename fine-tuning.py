@@ -46,7 +46,7 @@ training_args = TrainingArguments(
     save_total_limit=2,
 )
 
-Create Trainer
+# Create Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
@@ -54,7 +54,7 @@ trainer = Trainer(
     data_collator=data_collator,
 )
 
-Train the model
+# Train the model
 trainer.train()
 
 # Save the model

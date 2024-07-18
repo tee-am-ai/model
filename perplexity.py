@@ -16,8 +16,8 @@ def filter_valid_rows(row):
 
 name = 'clean'
 with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
-    reader = csv.reader(file, delimiter='|')
-    filtered_rows = [row for row in reader if filter_valid_rows(row)]
+    # reader = csv.reader(file, delimiter='|')
+    # filtered_rows = [row for row in reader if filter_valid_rows(row)]
 
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
