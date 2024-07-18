@@ -33,7 +33,7 @@ data_collator = DataCollatorForLanguageModeling(
     mlm=False,
 )
 
-Define training arguments
+# Define training arguments
 training_args = TrainingArguments(
     output_dir='./result/fine_tuning_results2',
     num_train_epochs=10,
@@ -46,7 +46,7 @@ training_args = TrainingArguments(
     save_total_limit=2,
 )
 
-# Create Trainer
+Create Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
@@ -54,7 +54,7 @@ trainer = Trainer(
     data_collator=data_collator,
 )
 
-# Train the model
+Train the model
 trainer.train()
 
 # Save the model
