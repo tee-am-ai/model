@@ -28,7 +28,7 @@ tokenizer.pad_token = tokenizer.eos_token
 # Combine question and answer into a single string for evaluation
 inputs = df['question'] + tokenizer.eos_token + df['answer']
 
-dataset = QADataset(inputs, tokenizer)
+dataset = QADataset(inputs, tokenizer, max_length=64)
 
 # Load model
 model = GPT2LMHeadModel.from_pretrained(model_path)
