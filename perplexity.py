@@ -51,8 +51,8 @@ def calculate_perplexity(model, dataset, batch_size=6):
     perplexity = torch.exp(torch.tensor(avg_loss))
     return perplexity.item()
 
-perplexity = calculate_perplexity(model, dataset)
-print(f'Perplexity: {perplexity}')
+# perplexity = calculate_perplexity(model, dataset)
+# print(f'Perplexity: {perplexity}')
 
 logging.info(f"model: {model_path}")
 logging.info(f'Perplexity: {perplexity}')
