@@ -17,10 +17,10 @@ def main():
         print(f"Jawaban: {answer}")
 
         # Log the result
-        logging.info(f"Model: {generator.model_path}")
-        logging.info(f"Pertanyaan: {question}")
-        logging.info(f"Jawaban: {answer}")
-        logging.info("------------------------------------------\n")
+        # logging.info(f"Model: {generator.model_path}")
+        # logging.info(f"Pertanyaan: {question}")
+        # logging.info(f"Jawaban: {answer}")
+        # logging.info("------------------------------------------\n")
 
 if __name__ == "__main__":
     main()
