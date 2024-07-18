@@ -31,8 +31,8 @@ inputs = df['question'] + tokenizer.eos_token + df['answer']
 dataset = QADataset(inputs, tokenizer)
 
 # Load model
-model = GPT2LMHeadModel.from_pretrained(model_path)
-model.eval()
+# model = GPT2LMHeadModel.from_pretrained(model_path)
+# model.eval()
 
 # Calculate perplexity
 def calculate_perplexity(model, dataset, batch_size=6):
