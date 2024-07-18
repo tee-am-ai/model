@@ -18,7 +18,7 @@ def main():
     bleu_score = generator.calculate_bleu_score(reference_answer, generated_answer)
     print("BLEU Score:", bleu_score)
 
-    logging.info(f"model: {generator.model_path}")
+    logging.info(f"Model: {generator.model_path}")
     logging.info(f"Question: {example_question}")
     logging.info(f"Answer: {generated_answer}")
     logging.info(f"Reference: {reference_answer}")
