@@ -16,10 +16,10 @@ def load_dataset(file_path):
         logging.error(f"File {file_path} not found.")
         return pd.DataFrame(columns=['question', 'answer'])
 
-# def prepare_tokenizer(model_path):
-#     tokenizer = GPT2Tokenizer.from_pretrained(model_path)
-#     tokenizer.pad_token = tokenizer.eos_token
-#     return tokenizer
+def prepare_tokenizer(model_path):
+    tokenizer = GPT2Tokenizer.from_pretrained(model_path)
+    tokenizer.pad_token = tokenizer.eos_token
+    return tokenizer
 
 # def combine_questions_answers(df, tokenizer):
 #     return df['question'] + tokenizer.eos_token + df['answer']
