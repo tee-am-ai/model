@@ -99,11 +99,11 @@ def compute_metrics(eval_pred):
     bleu = bleu_metric.compute(predictions=predictions, references=labels)
     rouge = rouge_metric.compute(predictions=predictions, references=labels)
 
-    return {
-        "accuracy": accuracy,
-        "bleu": bleu,
-        "rouge": rouge,
-    }
+    # return {
+    #     "accuracy": accuracy,
+    #     "bleu": bleu,
+    #     "rouge": rouge,
+    # }
 
 # Trainer
 trainer = Trainer(
