@@ -1,10 +1,12 @@
-import pandas as pd
-import torch
-import csv
-import logging
-from transformers import GPT2Tokenizer, GPT2LMHeadModel
-from torch.utils.data import DataLoader
-from utils import QADataset, logging_config
+import pandas as pd  # Mengimpor library pandas untuk manipulasi data
+import torch  # Mengimpor library PyTorch untuk keperluan deep learning
+import csv  # Mengimpor modul csv untuk memproses file CSV
+import logging  # Mengimpor modul logging untuk mencatat log
+
+from transformers import GPT2Tokenizer, GPT2LMHeadModel  # Mengimpor GPT2Tokenizer dan GPT2LMHeadModel dari library transformers
+from torch.utils.data import DataLoader  # Mengimpor DataLoader dari PyTorch untuk memproses batch data
+from utils import QADataset, logging_config  # Mengimpor QADataset dan logging_config dari modul utils
+
 
 logging_config('log_model', 'generator_perplexity.log')
     
