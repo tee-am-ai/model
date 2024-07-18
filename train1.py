@@ -15,7 +15,7 @@ def filter_valid_rows(row):
     return len(row) == 2 and all(row)
 
 # Load the dataset
-num = 'novi'
+num = 'coba'
 filtered_rows = []
 with open(f'datasets/{num}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|', quoting=csv.QUOTE_NONE)
@@ -33,7 +33,7 @@ train_df = train_df.reset_index(drop=True)
 test_df = test_df.reset_index(drop=True)
 
 # Prepare the dataset
-model_name = 'gpt22'
+model_name = 'gpt2'
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
@@ -128,7 +128,7 @@ tokenizer.save_pretrained(path)
 eval_results = trainer.evaluate()
 
 # Print evaluation results, including accuracy
-print(f"Evaluation Results: {eval_results}")
+print(f"Evaluation results: {eval_results}")
 logging.info(f"Model: {path}")
-logging.info(f"Evaluation Results: {eval_results}")
+logging.info(f"Evaluation results: {eval_results}")
 logging.info("------------------------------------------\n")
