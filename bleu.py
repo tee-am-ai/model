@@ -1,7 +1,5 @@
 import logging
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
-from utils import logging_config
+from utils import logging_config, GPT2Generator
 
 logging_config('log_model', 'generator_bleu.log')
 
