@@ -10,9 +10,9 @@ from utils import QADataset, logging_config
 
 logging_config('log_model', 'generator_accuracy.log')
 
-# # Function to filter valid rows
-# def filter_valid_rows(row):
-#     return len(row) == 2 and all(row)
+# Function to filter valid rows
+def filter_valid_rows(row):
+    return len(row) == 2 and all(row)
 
 # # Load the dataset
 # num = 'novi'
