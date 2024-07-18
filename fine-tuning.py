@@ -15,9 +15,9 @@ with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Prepare the dataset
-# model_name = 'model/fine_tuned_gpt2_model1'
-# tokenizer = GPT2Tokenizer.from_pretrained(model_name)
-# tokenizer.pad_token = tokenizer.eos_token
+model_name = 'model/fine_tuned_gpt2_model1'
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for training
 inputs = df['question'] + tokenizer.eos_token + df['answer']
