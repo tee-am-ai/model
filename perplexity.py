@@ -36,9 +36,9 @@ model.eval()
 
 # Calculate perplexity
 def calculate_perplexity(model, dataset, batch_size=6):
-    model.eval()
-    data_loader = DataLoader(dataset, batch_size=batch_size)
-    total_loss = 0.0
+    # model.eval()
+    # data_loader = DataLoader(dataset, batch_size=batch_size)
+    # total_loss = 0.0
     for i, batch in enumerate(data_loader):
         print(f"Processing batch {i}/{len(data_loader)}")
         input_ids = batch['input_ids']
