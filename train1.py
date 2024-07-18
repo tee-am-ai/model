@@ -14,14 +14,14 @@ logging_config('log_model', 'generator_accuracy.log')
 def filter_valid_rows(row):
     return len(row) == 2 and all(row)
 
-# # Load the dataset
-# num = 'novi'
-# filtered_rows = []
-# with open(f'datasets/{num}.csv', 'r', encoding='utf-8') as file:
-#     reader = csv.reader(file, delimiter='|', quoting=csv.QUOTE_NONE)
-#     for row in reader:
-#         if filter_valid_rows(row):
-#             filtered_rows.append(row)
+# Load the dataset
+num = 'novi'
+filtered_rows = []
+with open(f'datasets/{num}.csv', 'r', encoding='utf-8') as file:
+    reader = csv.reader(file, delimiter='|', quoting=csv.QUOTE_NONE)
+    for row in reader:
+        if filter_valid_rows(row):
+            filtered_rows.append(row)
 
 # df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
