@@ -1,6 +1,6 @@
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset # type: ignore
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction # type: ignore
 import logging
 import os
 
