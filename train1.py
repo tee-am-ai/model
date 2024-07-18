@@ -116,8 +116,8 @@ trainer = Trainer(
     compute_metrics=compute_metrics
 )
 
-# # Train the model
-# trainer.train()
+# Train the model
+trainer.train()
 
 # # Save the model
 # path = f'model/gpt2_coba{num}-{epoch}-{batch_size}'
