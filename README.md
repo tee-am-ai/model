@@ -13,3 +13,8 @@ python -m venv .venv
 ```bash
 .venv\Scripts\activate
 ```
+
+3. install semua library
+```bash
+pip install -r requirements.txt
+```
