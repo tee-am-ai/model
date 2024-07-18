@@ -54,6 +54,6 @@ def calculate_perplexity(model, dataset, batch_size=6):
 perplexity = calculate_perplexity(model, dataset)
 print(f'Perplexity: {perplexity}')
 
-# logging.info(f"model: {model_path}")
-# logging.info(f'Perplexity: {perplexity}')
-# logging.info("------------------------------------------\n")
+logging.info(f"model: {model_path}")
+logging.info(f'Perplexity: {perplexity}')
+logging.info("------------------------------------------\n")
