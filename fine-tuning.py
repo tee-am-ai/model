@@ -20,9 +20,9 @@ tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for training
-inputs = df['question'] + tokenizer.eos_token + df['answer']
+# inputs = df['question'] + tokenizer.eos_token + df['answer']
 
-dataset = QADataset(inputs, tokenizer)
+# dataset = QADataset(inputs, tokenizer)
 
 # Load model
 model = GPT2LMHeadModel.from_pretrained(model_name)
