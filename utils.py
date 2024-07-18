@@ -1,8 +1,8 @@
-from torch.utils.data import Dataset
-from transformers import GPT2Tokenizer, GPT2LMHeadModel
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
-import logging
-import os
+from torch.utils.data import Dataset  # Mengimpor kelas Dataset dari PyTorch untuk membuat dataset kustom
+from transformers import GPT2Tokenizer, GPT2LMHeadModel  # Mengimpor GPT2Tokenizer dan GPT2LMHeadModel dari library transformers
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction  # Mengimpor fungsi untuk menghitung skor BLEU dari NLTK
+import logging  # Mengimpor modul logging untuk mencatat log
+import os  # Mengimpor modul os untuk operasi terkait sistem operasi
 
 
 # Define the GPT2Generator class
@@ -49,13 +49,13 @@ class QADataset(Dataset):
         return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
 
 
-# Logging configuration
-# def logging_config(log_dir, log_filename):
-#     if not os.path.exists(log_dir):
-#         os.makedirs(log_dir)
+Logging configuration
+def logging_config(log_dir, log_filename):
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
 
-#     logging.basicConfig(
-#         filename=f'{log_dir}/{log_filename}',
-#         level=logging.INFO,
-#         format='%(asctime)s - %(levelname)s - %(message)s'
-#     )
+    logging.basicConfig(
+        filename=f'{log_dir}/{log_filename}',
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
