@@ -33,7 +33,7 @@ data_collator = DataCollatorForLanguageModeling(
     mlm=False,
 )
 
-# Define training arguments
+Define training arguments
 training_args = TrainingArguments(
     output_dir='./result/fine_tuning_results2',
     num_train_epochs=10,
