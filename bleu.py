@@ -13,15 +13,15 @@ def main():
 
     generated_answer = generator.generate_answer(example_question, max_length=100)
     print(f"Question: {example_question}")
-    print(f"Answer: {generated_answer}")
+    print(f"Generated Answer: {generated_answer}")
 
     bleu_score = generator.calculate_bleu_score(reference_answer, generated_answer)
     print("BLEU Score:", bleu_score)
 
     logging.info(f"Model: {generator.model_path}")
     logging.info(f"Question: {example_question}")
-    logging.info(f"Answer: {generated_answer}")
-    logging.info(f"Reference: {reference_answer}")
+    logging.info(f"Generated Answer: {generated_answer}")
+    logging.info(f"Reference Answer: {reference_answer}")
     logging.info(f"BLEU Score: {bleu_score}")
     logging.info("------------------------------------------\n")
 
