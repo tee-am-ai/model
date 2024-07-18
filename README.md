@@ -23,3 +23,8 @@ pip install -r requirements.txt
 ```bash
 python train.py
 ```
+
+5. Testing model latih
+```bash
+python test.py
+```
