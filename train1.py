@@ -96,9 +96,9 @@ def compute_metrics(eval_pred):
     predictions = predictions[mask]
     labels = labels[mask]
 
-#     # accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
-#     bleu = bleu_metric.compute(predictions=predictions, references=labels)
-#     # rouge = rouge_metric.compute(predictions=predictions, references=labels)
+    # accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
+    bleu = bleu_metric.compute(predictions=predictions, references=labels)
+    # rouge = rouge_metric.compute(predictions=predictions, references=labels)
 
 #     return {
 #         # "accuracy": accuracy,
