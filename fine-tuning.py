@@ -35,15 +35,15 @@ data_collator = DataCollatorForLanguageModeling(
 
 # Define training arguments
 training_args = TrainingArguments(
-    output_dir='./result/fine_tuning_results2',
-    num_train_epochs=10,
-    per_device_train_batch_size=8,
-    warmup_steps=500,
-    weight_decay=0.01,
-    logging_dir='./fine_tuning_logs2',
-    logging_steps=10,
-    save_steps=200,
-    save_total_limit=2,
+    # output_dir='./result/fine_tuning_results2',
+    # num_train_epochs=10,
+    # per_device_train_batch_size=8,
+    # warmup_steps=500,
+    # weight_decay=0.01,
+    # logging_dir='./fine_tuning_logs2',
+    # logging_steps=10,
+    # save_steps=200,
+    # save_total_limit=2,
 )
 
 # Create Trainer
