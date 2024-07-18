@@ -26,7 +26,7 @@ with open(f'datasets/{num}.csv', 'r', encoding='utf-8') as file:
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Split dataset into training and test sets
-train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
+# train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
 
 # Reset index to ensure continuous indexing
 train_df = train_df.reset_index(drop=True)
