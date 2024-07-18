@@ -33,7 +33,7 @@ train_df = train_df.reset_index(drop=True)
 test_df = test_df.reset_index(drop=True)
 
 # Prepare the dataset
-# tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for training
