@@ -1,12 +1,12 @@
-import pandas as pd
-import numpy as np
-import logging
-import csv
-import torch
-import evaluate
-from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
-from sklearn.model_selection import train_test_split
-from utils import QADataset, logging_config
+import pandas as pd  # Mengimpor library pandas untuk manipulasi data
+import numpy as np  # Mengimpor library numpy untuk operasi numerik
+import logging  # Mengimpor modul logging untuk mencatat log
+import csv  # Mengimpor modul csv untuk memproses file CSV
+import torch  # Mengimpor library PyTorch untuk keperluan deep learning
+import evaluate  # Mengimpor library evaluate (kemungkinan HuggingFace Evaluate) untuk evaluasi model
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling  # Mengimpor berbagai kelas dari library transformers
+from sklearn.model_selection import train_test_split  # Mengimpor fungsi train_test_split dari scikit-learn untuk membagi dataset menjadi set pelatihan dan pengujian
+from utils import QADataset, logging_config  # Mengimpor QADataset dan logging_config dari modul utils
 
 logging_config('log_model', 'generator_accuracy.log')
 
