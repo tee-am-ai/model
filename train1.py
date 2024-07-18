@@ -33,7 +33,8 @@ train_df = train_df.reset_index(drop=True)
 test_df = test_df.reset_index(drop=True)
 
 # Prepare the dataset
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model_name = 'gpt2'
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for training
@@ -44,7 +45,7 @@ inputs_test = test_df['question'] + tokenizer.eos_token + test_df['answer']
 dataset_test = QADataset(inputs_test, tokenizer, max_length=64)
 
 # Load model
-model = GPT2LMHeadModel.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained(model_name)
 
 # Define data collator
 data_collator = DataCollatorForLanguageModeling(
