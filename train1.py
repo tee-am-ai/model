@@ -28,9 +28,9 @@ df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 # Split dataset into training and test sets
 train_df, test_df = tts(df, test_size=0.2, random_state=42)
 
-# # Reset index to ensure continuous indexing
-# train_df = train_df.reset_index(drop=True)
-# test_df = test_df.reset_index(drop=True)
+# Reset index to ensure continuous indexing
+train_df = train_df.reset_index(drop=True)
+test_df = test_df.reset_index(drop=True)
 
 # # Prepare the dataset
 # model_name = 'gpt22'
