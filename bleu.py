@@ -8,9 +8,9 @@ logging_config('log_model', 'generator_bleu.log')
 
 class GPT2Generator:
     def __init__(self, model_path='gpt2'):
-        self.model_path = model_path
-        self.model = GPT2LMHeadModel.from_pretrained(model_path)
-        self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)
+        # self.model_path = model_path
+        # self.model = GPT2LMHeadModel.from_pretrained(model_path)
+        # self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 
     def generate_answer(self, question, max_length=120):
         # Encode the input question
