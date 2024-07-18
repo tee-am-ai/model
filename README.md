@@ -8,3 +8,8 @@ latih model tee-am-ai dengan gpt2
 ```bash
 python -m venv .venv
 ```
+
+2. aktivasi virtual environment
+```bash
+.venv\Scripts\activate
+```
