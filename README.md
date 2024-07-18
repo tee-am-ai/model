@@ -18,3 +18,8 @@ python -m venv .venv
 ```bash
 pip install -r requirements.txt
 ```
+
+4. running model
+```bash
+python train.py
+```
