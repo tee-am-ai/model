@@ -1,7 +1,7 @@
-import pandas as pd
-from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
-import csv
-from utils import QADataset
+import pandas as pd  # Mengimpor library pandas untuk manipulasi data
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling  # Mengimpor berbagai kelas dari library transformers
+import csv  # Mengimpor modul csv untuk memproses file CSV
+from utils import QADataset  # Mengimpor QADataset dari modul utils
 
 # Fungsi untuk memfilter baris yang valid (hanya baris dengan 2 elemen yang diterima)
 def filter_valid_rows(row):
