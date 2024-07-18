@@ -11,7 +11,7 @@ def main():
     example_question = "ibukota indonesia apa?"
     reference_answer = "jakarta"
 
-    generated_answer = generator.generate_answer(example_question)
+    generated_answer = generator.generate_answer(example_question, max_length=100)
     print(f"Question: {example_question}")
     print(f"Answer: {generated_answer}")
 
