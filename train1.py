@@ -91,9 +91,9 @@ def compute_metrics(eval_pred):
     labels = labels.view(-1)
     
     # Remove ignored index (-100) in labels
-    # mask = labels != -100
-    # predictions = predictions[mask]
-    # labels = labels[mask]
+    mask = labels != -100
+    predictions = predictions[mask]
+    labels = labels[mask]
 
     accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
     bleu = bleu_metric.compute(predictions=predictions, references=labels)
