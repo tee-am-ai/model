@@ -13,7 +13,7 @@ def main():
             print("Terminating the program...")
             break
         
-        answer = generator.generate_answer(question)
+        answer = generator.generate_answer(question, max_length=100)
         print(f"Jawaban: {answer}")
 
         # Log the result
