@@ -6,30 +6,30 @@ Latih model tee-am-ai dengan gpt2
 
 1. Buat virtual environment
 
-    ```sh
-    python -m venv .venv
-    ```
+    <div style="border-radius: 10px; background: #f6f8fa; padding: 10px;">
+        <pre><code>python -m venv .venv</code></pre>
+    </div>
 
 2. Aktivasi virtual environment
 
-    ```sh
+    ```bash
     .venv\Scripts\activate
     ```
 
 3. Install semua library
 
-    ```sh
+    ```bash
     pip install -r requirements.txt
     ```
 
 4. Running model
 
-    ```sh
+    ```bash
     python train.py
     ```
 
 5. Testing model latih
 
-    ```sh
+    ```bash
     python test.py
     ```
