@@ -23,7 +23,7 @@ with open(f'datasets/{num}.csv', 'r', encoding='utf-8') as file:
         if filter_valid_rows(row):
             filtered_rows.append(row)
 
-# df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
+df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # # Split dataset into training and test sets
 # train_df, test_df = tts(df, test_size=0.2, random_state=42)
