@@ -36,8 +36,8 @@ class QADataset(Dataset):
         self.tokenizer = tokenizer
         self.max_length = max_length
 
-#     def __len__(self):
-#         return len(self.texts)
+    def __len__(self):
+        return len(self.texts)
 
 #     def __getitem__(self, idx):
 #         encodings = self.tokenizer(self.texts[idx], truncation=True, padding=True, max_length=self.max_length, return_tensors='pt')
