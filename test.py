@@ -22,5 +22,5 @@ def main():
         logging.info(f"Jawaban: {answer}")
         logging.info("------------------------------------------\n")
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
