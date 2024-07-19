@@ -19,9 +19,9 @@ def main():
     print("BLEU Score:", bleu_score)
 
     logging.info(f"Model: {generator.model_path}")
-    # logging.info(f"Question: {example_question}")
-    # logging.info(f"Answer: {generated_answer}")
-    # logging.info(f"Reference: {reference_answer}")
+    logging.info(f"Question: {example_question}")
+    logging.info(f"Answer: {generated_answer}")
+    logging.info(f"Reference: {reference_answer}")
     logging.info(f"BLEU Score: {bleu_score}")
     logging.info("------------------------------------------\n")
 
