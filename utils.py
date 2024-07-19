@@ -46,10 +46,10 @@ class QADataset(Dataset):
         return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
 
 
-# # Logging configuration
-# def logging_config(log_dir, log_filename):
-#     if not os.path.exists(log_dir):
-#         os.makedirs(log_dir)
+# Logging configuration
+def logging_config(log_dir, log_filename):
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
 
 #     logging.basicConfig(
 #         filename=f'{log_dir}/{log_filename}',
