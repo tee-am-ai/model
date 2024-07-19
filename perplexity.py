@@ -21,3 +21,11 @@ def prepare_tokenizer(model_path):
     tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
 
+def combine_questions_answers(df, tokenizer):
+    return df['question'] + tokenizer.eos_token + df['answer']
+
+def prepare_model(model_path):
+    model = GPT2LMHeadModel.from_pretrained(model_path)
+    model.eval()
+    return model
+
