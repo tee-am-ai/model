@@ -29,12 +29,12 @@ class GPT2Generator:
         return bleu_score
 
 
-# # Define the QADataset class
-# class QADataset(Dataset):
-#     def __init__(self, texts, tokenizer, max_length):
-#         self.texts = texts
-#         self.tokenizer = tokenizer
-#         self.max_length = max_length
+# Define the QADataset class
+class QADataset(Dataset):
+    def __init__(self, texts, tokenizer, max_length):
+        self.texts = texts
+        self.tokenizer = tokenizer
+        self.max_length = max_length
 
 #     def __len__(self):
 #         return len(self.texts)
