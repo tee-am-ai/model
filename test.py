@@ -3,11 +3,11 @@ from utils import logging_config, GPT2Generator
 
 logging_config('log_model', 'generator_test.log')
 
-# def main():
-#     generator = GPT2Generator(model_path='model/gpt2_cobacoba-20-24')
+def main():
+    generator = GPT2Generator(model_path='model/gpt2_cobacoba-20-24')
     
-#     while True:
-#         question = input("Masukkan pertanyaan (atau ketik 'exit' untuk keluar): ").strip()
+    while True:
+        question = input("Masukkan pertanyaan (atau ketik 'exit' untuk keluar): ").strip()
         
 #         if question.lower() == 'exit':
 #             print("Terminating the program...")
