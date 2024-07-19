@@ -16,10 +16,10 @@ class GPT2Generator:
         outputs = self.model.generate(inputs, max_length=max_length, pad_token_id=self.tokenizer.eos_token_id)
         answer = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-#         if answer.startswith(question):
-#             answer = answer[len(question):].strip()
+        if answer.startswith(question):
+            answer = answer[len(question):].strip()
 
-#         return answer
+        return answer
     
 #     def calculate_bleu_score(self, reference, generated):
 #         reference_tokens = self.tokenizer.tokenize(reference)
