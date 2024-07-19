@@ -15,20 +15,16 @@ def load_dataset(file_path):
     except FileNotFoundError:
         logging.error(f"File {file_path} not found.")
         return pd.DataFrame(columns=['question', 'answer'])
-
 def prepare_tokenizer(model_path):
     tokenizer = GPT2Tokenizer.from_pretrained(model_path)
     tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
-
 def combine_questions_answers(df, tokenizer):
     return df['question'] + tokenizer.eos_token + df['answer']
-
 def prepare_model(model_path):
     model = GPT2LMHeadModel.from_pretrained(model_path)
     model.eval()
     return model
-
 def calculate_perplexity(model, dataset, batch_size=6):
     data_loader = DataLoader(dataset, batch_size=batch_size)
     total_loss = 0.0
@@ -40,7 +36,6 @@ def calculate_perplexity(model, dataset, batch_size=6):
             total_loss += outputs.loss.item()
     avg_loss = total_loss / len(data_loader)
     return torch.exp(torch.tensor(avg_loss)).item()
-
 def main():
     logging_config('log_model', 'generator_perplexity.log')
     df = load_dataset('datasets/clean.csv')
@@ -53,6 +48,5 @@ def main():
     logging.info(f'Perplexity: {perplexity}')
     logging.info("------------------------------------------\n")
     print(f'Perplexity: {perplexity}')
-
 if __name__ == "__main__":
     main()
