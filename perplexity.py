@@ -34,21 +34,21 @@ model = GPT2LMHeadModel.from_pretrained(model_path)
 model.eval()
 
 # Calculate perplexity
-def calculate_perplexity(model, dataset, batch_size=6):
-    model.eval()
-    data_loader = DataLoader(dataset, batch_size=batch_size)
-    total_loss = 0.0
-    for i, batch in enumerate(data_loader):
-        print(f"Processing batch {i}/{len(data_loader)}")
-        input_ids = batch['input_ids']
-        attention_mask = batch['attention_mask']
-        with torch.no_grad():
-            outputs = model(input_ids, attention_mask=attention_mask, labels=input_ids)
-            loss = outputs.loss
-            total_loss += loss.item()
-    avg_loss = total_loss / len(data_loader)
-    perplexity = torch.exp(torch.tensor(avg_loss))
-    return perplexity.item()
+# def calculate_perplexity(model, dataset, batch_size=6):
+#     model.eval()
+#     data_loader = DataLoader(dataset, batch_size=batch_size)
+#     total_loss = 0.0
+#     for i, batch in enumerate(data_loader):
+#         print(f"Processing batch {i}/{len(data_loader)}")
+#         input_ids = batch['input_ids']
+#         attention_mask = batch['attention_mask']
+#         with torch.no_grad():
+#             outputs = model(input_ids, attention_mask=attention_mask, labels=input_ids)
+#             loss = outputs.loss
+#             total_loss += loss.item()
+#     avg_loss = total_loss / len(data_loader)
+#     perplexity = torch.exp(torch.tensor(avg_loss))
+#     return perplexity.item()
 
 perplexity = calculate_perplexity(model, dataset)
 print(f'Perplexity: {perplexity}')
