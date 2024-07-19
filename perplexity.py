@@ -54,5 +54,5 @@ def main():
     logging.info("------------------------------------------\n")
     print(f'Perplexity: {perplexity}')
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
