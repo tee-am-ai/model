@@ -54,8 +54,8 @@ trainer = Trainer(
     data_collator=data_collator,
 )
 
-# # Train the model
-# trainer.train()
+# Train the model
+trainer.train()
 
 # # Save the model
 # model_path = f'model/gpt2_model_{name}'
