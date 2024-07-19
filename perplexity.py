@@ -12,3 +12,6 @@ def load_dataset(file_path):
             reader = csv.reader(file, delimiter='|')
             filtered_rows = [row for row in reader if len(row) == 2]
         return pd.DataFrame(filtered_rows, columns=['question', 'answer'])
+    except FileNotFoundError:
+        logging.error(f"File {file_path} not found.")
+        return pd.DataFrame(columns=['question', 'answer'])
