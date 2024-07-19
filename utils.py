@@ -4,12 +4,12 @@ from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction # type: i
 import logging
 import os
 
-# # Define the GPT2Generator class
-# class GPT2Generator:
-#     def __init__(self, model_path='gpt2'):
-#         self.model_path = model_path
-#         self.model = GPT2LMHeadModel.from_pretrained(model_path)
-#         self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)
+# Define the GPT2Generator class
+class GPT2Generator:
+    def __init__(self, model_path='gpt2'):
+        self.model_path = model_path
+        self.model = GPT2LMHeadModel.from_pretrained(model_path)
+        self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 
 #     def generate_answer(self, question, max_length):
 #         inputs = self.tokenizer.encode(question + self.tokenizer.eos_token, return_tensors='pt')
