@@ -1,42 +1,7 @@
-import os  # Import modul untuk berinteraksi dengan sistem operasi
-import logging  # Import modul untuk logging pesan
-from transformers import GPT2LMHeadModel, GPT2Tokenizer  # Import kelas dari library transformers
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction  # Import fungsi untuk perhitungan skor BLEU
-from utils import logging_config  # Import konfigurasi logging custom dari modul utils
-
-
+import logging
+from utils import logging_config, GPT2Generator
 
 logging_config('log_model', 'generator_bleu.log')
-
-class GPT2Generator:
-    def __init__(self, model_path='gpt2'):
-        self.model_path = model_path
-        self.model = GPT2LMHeadModel.from_pretrained(model_path)  # Inisialisasi model GPT-2 dari path yang diberikan
-        self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)  # Inisialisasi tokenizer GPT-2 dari path yang diberikan
-
-    def generate_answer(self, question, max_length=120):
-        # Metode untuk menghasilkan jawaban berdasarkan pertanyaan yang diberikan
-        # Encode pertanyaan input menggunakan tokenizer
-        inputs = self.tokenizer.encode(question + self.tokenizer.eos_token, return_tensors='pt')
-        # Generate jawaban menggunakan model GPT-2
-        outputs = self.model.generate(inputs, max_length=max_length, pad_token_id=self.tokenizer.eos_token_id)
-        # Decode jawaban yang dihasilkan
-        answer = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-        # Memastikan jawaban tidak dimulai dengan pertanyaan
-        if answer.startswith(question):
-            answer = answer[len(question):].strip()
-
-        return answer
-    
-    def calculate_bleu_score(self, reference, generated):
-        # Metode untuk menghitung skor BLEU antara referensi dan teks yang dihasilkan
-        reference_tokens = self.tokenizer.tokenize(reference)
-        generated_tokens = self.tokenizer.tokenize(generated)
-        smoothing_function = SmoothingFunction().method4  # Menggunakan metode smoothing untuk skor BLEU
-        bleu_score = sentence_bleu([reference_tokens], generated_tokens, smoothing_function=smoothing_function)
-        return bleu_score
-
 
 # Example usage:
 def main():
@@ -46,14 +11,14 @@ def main():
     example_question = "ibukota indonesia apa?"
     reference_answer = "jakarta"
 
-    generated_answer = generator.generate_answer(example_question)
+    generated_answer = generator.generate_answer(example_question, max_length=100)
     print(f"Question: {example_question}")
     print(f"Answer: {generated_answer}")
 
     bleu_score = generator.calculate_bleu_score(reference_answer, generated_answer)
     print("BLEU Score:", bleu_score)
 
-    logging.info(f"model: {generator.model_path}")
+    logging.info(f"Model: {generator.model_path}")
     logging.info(f"Question: {example_question}")
     logging.info(f"Answer: {generated_answer}")
     logging.info(f"Reference: {reference_answer}")
