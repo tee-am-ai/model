@@ -9,7 +9,6 @@ from utils import QADataset, logging_config  # Mengimpor QADataset dan logging_c
 # Konfigurasi logging
 logging.basicConfig(filename='generator_perplexity.log', level=logging.INFO)
 
-# Fungsi untuk memfilter baris yang valid dari dataset
 def filter_valid_rows(row):
     return len(row) == 2  # Memastikan bahwa baris memiliki tepat 2 elemen
 
