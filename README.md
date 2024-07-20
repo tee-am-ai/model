@@ -11,13 +11,13 @@ Proyek ini bertujuan untuk melatih model GPT-2 menggunakan dataset khusus untuk 
 
    ```
 
-2. Aktivasi virtual environment
+2. **Aktivasi virtual environment**
 
    ```bash
    .venv\Scripts\activate
    ```
 
-3. Install semua library
+3. **Install semua library**
 
    ```bash
    pip install -r requirements.txt
