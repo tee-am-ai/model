@@ -6,15 +6,6 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel  # Mengimpor GPT2Tokeniz
 from torch.utils.data import DataLoader  # Mengimpor DataLoader dari PyTorch untuk memuat data dalam batch
 from utils import QADataset, logging_config  # Mengimpor QADataset dan logging_config dari modul utils
 
-# Kode ini mengimpor library dan modul yang dibutuhkan untuk:
-# - Memanipulasi data dengan pandas
-# - Melakukan operasi tensor dengan PyTorch
-# - Membaca dan menulis file CSV
-# - Mencatat log
-# - Mempersiapkan tokenisasi dan pemuatan model GPT-2
-# - Memuat data untuk pelatihan model menggunakan dataset tanya jawab khusus (QADataset)
-
-
 # Konfigurasi logging
 logging.basicConfig(filename='generator_perplexity.log', level=logging.INFO)
 
