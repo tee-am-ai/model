@@ -16,7 +16,6 @@ def main():
             print("Terminating the program...")
             break
         
-        # Menghasilkan jawaban dari model
         answer = generator.generate_answer(question, max_length=100)
         print(f"Jawaban: {answer}")
 
