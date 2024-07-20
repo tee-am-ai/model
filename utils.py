@@ -1,8 +1,12 @@
-from torch.utils.data import Dataset  # Mengimpor kelas Dataset dari PyTorch untuk membuat dataset kustom
-from transformers import GPT2Tokenizer, GPT2LMHeadModel  # Mengimpor GPT2Tokenizer dan GPT2LMHeadModel dari library transformers
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction  # Mengimpor fungsi untuk menghitung skor BLEU dari NLTK
-import logging  # Mengimpor modul logging untuk mencatat log
-import os  # Mengimpor modul os untuk operasi terkait sistem operasi
+from torch.utils.data import Dataset  # Import the Dataset class from PyTorch to create a custom dataset
+from transformers import GPT2Tokenizer, GPT2LMHeadModel  # Import GPT2Tokenizer and GPT2LMHeadModel from the transformers library
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction  # Import functions to calculate BLEU scores from NLTK
+import logging  # Import the logging module to record logs
+import os  # Import the os module for operating system-related operations
+
+# This code imports necessary libraries and modules to create a custom dataset, tokenize and load a GPT-2 model,
+# calculate BLEU scores for evaluating text generation, log information, and perform operating system-related tasks.
+
 
 
 # Define the GPT2Generator class
