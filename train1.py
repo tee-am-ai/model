@@ -5,11 +5,7 @@ import csv  # Mengimpor modul csv untuk membaca dan menulis file CSV
 import torch  # Mengimpor library PyTorch untuk operasi tensor dan deep learning
 import evaluate  # Mengimpor library evaluate (kemungkinan untuk evaluasi model NLP, seperti dari HuggingFace)
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
-# Mengimpor berbagai kelas dari library transformers untuk:
-# - Tokenisasi (GPT2Tokenizer)
-# - Memuat model GPT-2 (GPT2LMHeadModel)
-# - Pelatihan model (Trainer dan TrainingArguments)
-# - Kolasi data untuk pelatihan (DataCollatorForLanguageModeling)
+# Mengimpor berbagai kelas dari library transformers
 from sklearn.model_selection import train_test_split as tts
 # Mengimpor fungsi untuk membagi dataset menjadi set pelatihan dan pengujian
 from utils import QADataset, logging_config
