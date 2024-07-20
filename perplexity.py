@@ -1,64 +1,58 @@
-import pandas as pd  # Mengimpor library pandas untuk manipulasi data
-import torch  # Mengimpor library PyTorch untuk keperluan deep learning
-import csv  # Mengimpor modul csv untuk memproses file CSV
-import logging  # Mengimpor modul logging untuk mencatat log
-from transformers import GPT2Tokenizer, GPT2LMHeadModel  # Mengimpor GPT2Tokenizer dan GPT2LMHeadModel dari library transformers
-from torch.utils.data import DataLoader  # Mengimpor DataLoader dari PyTorch untuk memproses batch data
-from utils import QADataset, logging_config  # Mengimpor QADataset dan logging_config dari modul utils
+import pandas as pd
+import torch
+import csv
+import logging
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from torch.utils.data import DataLoader
+from utils import QADataset, logging_config
 
-# Konfigurasi logging dengan nama file 'log_model' dan file log 'generator_perplexity.log'
 logging_config('log_model', 'generator_perplexity.log')
 
-model_path = 'model/fine_tuned_gpt2_model2'  # Path model yang telah dilatih
-
-# Memuat dataset
+# Load the dataset
 def filter_valid_rows(row):
-    return len(row) == 2  # Memfilter baris valid yang memiliki 2 kolom
+    return len(row) == 2
 
 name = 'clean'
-with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:  # Membuka file CSV
+with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
-    filtered_rows = [row for row in reader if filter_valid_rows(row)]  # Memfilter baris valid
+    filtered_rows = [row for row in reader if filter_valid_rows(row)]
 
-df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])  # Membuat DataFrame dari baris yang difilter
+df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
-# Mempersiapkan dataset
-tokenizer = GPT2Tokenizer.from_pretrained(model_path)  # Memuat tokenizer dari model yang dilatih
-tokenizer.pad_token = tokenizer.eos_token  # Mengatur token padding menjadi token akhir
+# Prepare the dataset
+model_path = 'model/fine_tuned_gpt2_model2'
+tokenizer = GPT2Tokenizer.from_pretrained(model_path)
+tokenizer.pad_token = tokenizer.eos_token
 
-# Menggabungkan pertanyaan dan jawaban menjadi satu string untuk evaluasi
+# Combine question and answer into a single string for evaluation
 inputs = df['question'] + tokenizer.eos_token + df['answer']
 
-dataset = QADataset(inputs, tokenizer)  # Membuat dataset menggunakan kelas QADataset
+dataset = QADataset(inputs, tokenizer, max_length=64)
 
-# Memuat model
-model = GPT2LMHeadModel.from_pretrained(model_path)  # Memuat model yang telah dilatih
-model.eval()  # Mengatur model ke mode evaluasi
+# Load model
+model = GPT2LMHeadModel.from_pretrained(model_path)
+model.eval()
 
-# Menghitung perplexity
+# Calculate perplexity
 def calculate_perplexity(model, dataset, batch_size=6):
-    model.eval()  # Mengatur model ke mode evaluasi
-    data_loader = DataLoader(dataset, batch_size=batch_size)  # Membuat DataLoader untuk memuat data
+    model.eval()
+    data_loader = DataLoader(dataset, batch_size=batch_size)
     total_loss = 0.0
-    for i, batch in enumerate(data_loader):  # Mengiterasi batch data
+    for i, batch in enumerate(data_loader):
         print(f"Processing batch {i}/{len(data_loader)}")
         input_ids = batch['input_ids']
         attention_mask = batch['attention_mask']
-        with torch.no_grad():  # Tidak menghitung gradien
-            outputs = model(input_ids, attention_mask=attention_mask, labels=input_ids)  # Memprediksi keluaran
-            loss = outputs.loss  # Menghitung loss
-            total_loss += loss.item()  # Menambahkan loss ke total_loss
-    avg_loss = total_loss / len(data_loader)  # Menghitung rata-rata loss
-    perplexity = torch.exp(torch.tensor(avg_loss))  # Menghitung perplexity
+        with torch.no_grad():
+            outputs = model(input_ids, attention_mask=attention_mask, labels=input_ids)
+            loss = outputs.loss
+            total_loss += loss.item()
+    avg_loss = total_loss / len(data_loader)
+    perplexity = torch.exp(torch.tensor(avg_loss))
     return perplexity.item()
 
-perplexity = calculate_perplexity(model, dataset)  # Menghitung perplexity
+perplexity = calculate_perplexity(model, dataset)
 print(f'Perplexity: {perplexity}')
 
-# Logging informasi
-logging.info(f"model: {model_path}")
+logging.info(f"Model: {model_path}")
 logging.info(f'Perplexity: {perplexity}')
 logging.info("------------------------------------------\n")
-
-# Kode ini bertujuan untuk menghitung perplexity dari model GPT-2 yang telah dilatih,
-# menggunakan dataset tanya jawab, dan mencatat hasilnya ke dalam log file.
