@@ -7,8 +7,6 @@ logging.basicConfig(filename='generator_bleu.log', level=logging.INFO)
 # Fungsi utama
 def main():
     generator = GPT2Generator(model_path='gpt2_model_coba')  # Membuat instance generator GPT-2 dengan path model yang ditentukan
-
-    # Contoh penggunaan untuk menghasilkan dan mengevaluasi skor BLEU
     example_question = "ibukota indonesia apa?"  # Pertanyaan contoh
     reference_answer = "jakarta"  # Jawaban referensi
 
