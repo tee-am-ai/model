@@ -26,9 +26,7 @@ with open(f'datasets/{num}.csv', 'r', encoding='utf-8') as file:
         if filter_valid_rows(row):
             filtered_rows.append(row)  # Menyimpan baris yang valid
 
-df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])  # Membuat DataFrame dari baris yang difilter
-
-# Membagi dataset menjadi set pelatihan dan pengujian
+df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 train_df, test_df = tts(df, test_size=0.2, random_state=42)  # 80% untuk pelatihan, 20% untuk pengujian
 
 # Reset index untuk memastikan pengindeksan yang kontinu
