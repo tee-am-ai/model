@@ -23,13 +23,13 @@ Proyek ini bertujuan untuk melatih model GPT-2 menggunakan dataset khusus untuk 
    pip install -r requirements.txt
    ```
 
-4. Running model
+4. **Running model**
 
    ```bash
    python train.py
    ```
 
-5. Testing model latih
+5. **Testing model latih**
 
    ```bash
    python test.py
