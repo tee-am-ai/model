@@ -13,7 +13,7 @@ def main():
         
         if question.lower() == 'exit':  # Memeriksa apakah pengguna ingin keluar
             print("Terminating the program...")
-            break  # Menghentikan loop dan keluar dari program
+            break 
         
         answer = generator.generate_answer(question, max_length=100)  # Menghasilkan jawaban menggunakan generator GPT-2
         print(f"Jawaban: {answer}")
