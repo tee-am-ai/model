@@ -12,50 +12,52 @@ from utils import QADataset  # Mengimpor kelas QADataset dari modul utils untuk 
 # memuat dan melatih model GPT-2, memproses file CSV, serta menangani dataset tanya jawab khusus.
 
 
-# Load the dataset
+# Fungsi untuk memfilter baris yang valid dari dataset
 def filter_valid_rows(row):
-    return len(row) == 2
+    return len(row) == 2  # Memastikan bahwa baris memiliki tepat 2 elemen
 
+# Memuat dataset
 name = 'clean'
 with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
-    filtered_rows = [row for row in reader if filter_valid_rows(row)]
+    filtered_rows = [row for row in reader if filter_valid_rows(row)]  # Memfilter baris yang valid
 
-df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
+df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])  # Membuat DataFrame dari baris yang difilter
 
-# Prepare the dataset
+# Mempersiapkan dataset
 model_name = 'gpt2'
-tokenizer = GPT2Tokenizer.from_pretrained(model_name)
-tokenizer.pad_token = tokenizer.eos_token
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)  # Memuat tokenizer GPT-2
+tokenizer.pad_token = tokenizer.eos_token  # Menetapkan token padding sebagai token akhir (eos)
 
-# Combine question and answer into a single string for training
-inputs = df['question'] + tokenizer.eos_token + df['answer']
+# Menggabungkan pertanyaan dan jawaban menjadi satu string untuk pelatihan
+inputs = df['question'] + tokenizer.eos_token + df['answer']  # Menggabungkan pertanyaan dan jawaban dengan token akhir
 
-dataset = QADataset(inputs, tokenizer, max_length=64)
+# Membuat dataset untuk QA
+dataset = QADataset(inputs, tokenizer, max_length=64)  # Menginisialisasi dataset dengan input dan tokenizer
 
-# Load model
-model = GPT2LMHeadModel.from_pretrained(model_name)
+# Memuat model
+model = GPT2LMHeadModel.from_pretrained(model_name)  # Memuat model GPT-2
 
-# Define data collator
+# Mendefinisikan data collator
 data_collator = DataCollatorForLanguageModeling(
     tokenizer=tokenizer,
-    mlm=False,
+    mlm=False,  # Tidak menggunakan Masked Language Modeling
 )
 
-# Define training arguments
+# Mendefinisikan argumen pelatihan
 training_args = TrainingArguments(
-    output_dir=f'./result/results_{name}',
-    num_train_epochs=3,
-    per_device_train_batch_size=4,
-    warmup_steps=500,
-    weight_decay=0.01,
-    logging_dir='./logs',
-    logging_steps=10,
-    save_steps=500,
-    save_total_limit=2,
+    output_dir=f'./result/results_{name}',  # Direktori untuk menyimpan hasil
+    num_train_epochs=3,  # Jumlah epoch pelatihan
+    per_device_train_batch_size=4,  # Ukuran batch per perangkat
+    warmup_steps=500,  # Jumlah langkah warmup
+    weight_decay=0.01,  # Nilai weight decay
+    logging_dir='./logs',  # Direktori untuk menyimpan log
+    logging_steps=10,  # Interval langkah untuk logging
+    save_steps=500,  # Interval langkah untuk menyimpan model
+    save_total_limit=2,  # Batas total jumlah model yang disimpan
 )
 
-# Create Trainer
+# Membuat Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
@@ -63,10 +65,10 @@ trainer = Trainer(
     data_collator=data_collator,
 )
 
-# Train the model
+# Melatih model
 trainer.train()
 
-# Save the model
+# Menyimpan model
 model_path = f'model/gpt2_model_{name}'
-model.save_pretrained(model_path)
-tokenizer.save_pretrained(model_path)
+model.save_pretrained(model_path)  # Menyimpan model yang telah dilatih
+tokenizer.save_pretrained(model_path)  # Menyimpan tokenizer
