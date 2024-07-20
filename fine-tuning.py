@@ -6,7 +6,7 @@ from utils import QADataset  # Mengimpor kelas QADataset dari modul utils untuk 
 
 # Fungsi untuk memfilter baris yang valid dari dataset
 def filter_valid_rows(row):
-    return len(row) == 2  # Memastikan bahwa baris memiliki tepat 2 elemen
+    return len(row) == 2 
 
 # Memuat dataset
 name = 'clean'
