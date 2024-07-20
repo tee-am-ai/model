@@ -18,7 +18,7 @@ df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])  # Membuat Data
 
 # Mempersiapkan dataset
 model_name = 'model/fine_tuned_gpt2_model1'
-tokenizer = GPT2Tokenizer.from_pretrained(model_name)  # Memuat tokenizer dari model yang telah disesuaikan
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token  # Menetapkan token padding sebagai token akhir (eos)
 
 # Menggabungkan pertanyaan dan jawaban menjadi satu string untuk pelatihan
