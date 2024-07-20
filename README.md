@@ -1,6 +1,6 @@
 # Model Latih tee-am-ai
 
-Latih model tee-am-ai dengan GPT2
+Latih model tee-am-ai dengan gpt2
 
 ## Aktivasi virtual environment di cmd
 
