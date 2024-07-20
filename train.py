@@ -1,7 +1,12 @@
-import pandas as pd  # Mengimpor library pandas untuk manipulasi data
-from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling  # Mengimpor berbagai kelas dari library transformers
-import csv  # Mengimpor modul csv untuk memproses file CSV
-from utils import QADataset  # Mengimpor QADataset dari modul utils
+import pandas as pd  # Import the pandas library for data manipulation
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
+# Import various classes from the transformers library for tokenization, model loading, training, and data collation
+import csv  # Import the csv module to process CSV files
+from utils import QADataset  # Import QADataset from the utils module for a custom question-answer dataset
+
+# This code imports necessary libraries and modules to manipulate data, process CSV files,
+# and load specific classes from the transformers library to fine-tune a GPT-2 model for a question-answering dataset.
+
 
 # Fungsi untuk memfilter baris yang valid (hanya baris dengan 2 elemen yang diterima)
 def filter_valid_rows(row):
