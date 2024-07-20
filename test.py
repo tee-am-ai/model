@@ -5,7 +5,6 @@ from utils import logging_config, GPT2Generator  # Mengimpor fungsi logging_conf
 logging.basicConfig(filename='generator_test.log', level=logging.INFO)
 
 def main():
-    # Menginisialisasi generator dengan model yang telah dilatih
     generator = GPT2Generator(model_path='model/gpt2_cobacoba-20-24')
     
     while True:
