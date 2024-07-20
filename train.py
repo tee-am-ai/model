@@ -4,13 +4,9 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArgume
 import csv  # Mengimpor modul csv untuk membaca dan menulis file CSV
 from utils import QADataset  # Mengimpor kelas QADataset dari modul utils untuk dataset tanya jawab khusus
 
-# Kode ini mengimpor library dan modul yang dibutuhkan untuk manipulasi data, 
-# memuat dan melatih model GPT-2, memproses file CSV, serta menangani dataset tanya jawab khusus.
-
-
 # Fungsi untuk memfilter baris yang valid dari dataset
 def filter_valid_rows(row):
-    return len(row) == 2  # Memastikan bahwa baris memiliki tepat 2 elemen
+    return len(row) == 2
 
 # Memuat dataset
 name = 'clean'
