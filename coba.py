@@ -1,9 +1,6 @@
 import logging  # Mengimpor modul logging untuk mencatat log
 from utils import logging_config, GPT2Generator  # Mengimpor fungsi logging_config dan kelas GPT2Generator dari modul utils
 
-# Kode ini mengimpor modul logging dan dua komponen dari modul utils,
-# yaitu fungsi logging_config untuk konfigurasi logging dan kelas GPT2Generator untuk menghasilkan teks menggunakan model GPT-2.
-
 # Konfigurasi logging
 logging.basicConfig(filename='generator_test.log', level=logging.INFO)
 
