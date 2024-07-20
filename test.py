@@ -1,7 +1,7 @@
 import logging
-from utils import logging_config, GPT2Generator
+# from utils import logging_config, GPT2Generator
 
-logging_config('log_model', 'generator_test.log')
+# logging_config('log_model', 'generator_test.log')
 
 def main():
     generator = GPT2Generator(model_path='model/gpt2_cobacoba-20-24')
@@ -22,5 +22,5 @@ def main():
         logging.info(f"Jawaban: {answer}")
         logging.info("------------------------------------------\n")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
