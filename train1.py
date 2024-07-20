@@ -1,18 +1,12 @@
-import pandas as pd  # Import the pandas library for data manipulation
-import numpy as np  # Import the numpy library for numerical operations
-import logging  # Import the logging module to record logs
-import csv  # Import the csv module to process CSV files
-import torch  # Import the PyTorch library for deep learning purposes
-import evaluate  # Import the evaluate library (likely HuggingFace Evaluate) for model evaluation
+import pandas as pd
+import numpy as np
+import logging
+import csv
+import torch
+import evaluate
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
-# Import various classes from the transformers library for tokenization, model loading, training, and data collation
-from sklearn.model_selection import train_test_split  # Import the train_test_split function from scikit-learn to split the dataset into training and test sets
-from utils import QADataset, logging_config  # Import QADataset and logging_config from the utils module
-
-# This code imports necessary libraries and modules for data manipulation, numerical operations, logging, CSV processing,
-# deep learning with PyTorch, model evaluation, and loading specific classes from the transformers library to fine-tune a GPT-2 model for a question-answering dataset.
-# It also imports a function to split datasets and custom utility functions for handling the Q&A dataset and logging configuration.
-
+from sklearn.model_selection import train_test_split as tts
+from utils import QADataset, logging_config
 
 logging_config('log_model', 'generator_accuracy.log')
 
@@ -32,25 +26,26 @@ with open(f'datasets/{num}.csv', 'r', encoding='utf-8') as file:
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Split dataset into training and test sets
-train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
+train_df, test_df = tts(df, test_size=0.2, random_state=42)
 
 # Reset index to ensure continuous indexing
 train_df = train_df.reset_index(drop=True)
 test_df = test_df.reset_index(drop=True)
 
 # Prepare the dataset
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model_name = 'gpt2'
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for training
 inputs_train = train_df['question'] + tokenizer.eos_token + train_df['answer']
-dataset_train = QADataset(inputs_train, tokenizer)
+dataset_train = QADataset(inputs_train, tokenizer, max_length=64)
 
 inputs_test = test_df['question'] + tokenizer.eos_token + test_df['answer']
-dataset_test = QADataset(inputs_test, tokenizer)
+dataset_test = QADataset(inputs_test, tokenizer, max_length=64)
 
 # Load model
-model = GPT2LMHeadModel.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained(model_name)
 
 # Define data collator
 data_collator = DataCollatorForLanguageModeling(
@@ -79,9 +74,9 @@ training_args = TrainingArguments(
 )
 
 # Load metrics
-accuracy_metric = evaluate.load("accuracy", trust_remote_code=True)
+# accuracy_metric = evaluate.load("accuracy", trust_remote_code=True)
 bleu_metric = evaluate.load("bleu", trust_remote_code=True)
-rouge_metric = evaluate.load("rouge", trust_remote_code=True)
+# rouge_metric = evaluate.load("rouge", trust_remote_code=True)
 
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
@@ -101,14 +96,14 @@ def compute_metrics(eval_pred):
     predictions = predictions[mask]
     labels = labels[mask]
 
-    accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
+    # accuracy = accuracy_metric.compute(predictions=predictions, references=labels)
     bleu = bleu_metric.compute(predictions=predictions, references=labels)
-    rouge = rouge_metric.compute(predictions=predictions, references=labels)
+    # rouge = rouge_metric.compute(predictions=predictions, references=labels)
 
     return {
-        "accuracy": accuracy,
+        # "accuracy": accuracy,
         "bleu": bleu,
-        "rouge": rouge,
+        # "rouge": rouge,
     }
 
 # Trainer
@@ -134,6 +129,6 @@ eval_results = trainer.evaluate()
 
 # Print evaluation results, including accuracy
 print(f"Evaluation results: {eval_results}")
-logging.info(f"model: {path}")
+logging.info(f"Model: {path}")
 logging.info(f"Evaluation results: {eval_results}")
 logging.info("------------------------------------------\n")
