@@ -8,7 +8,7 @@ logging.basicConfig(filename='generator_test.log', level=logging.INFO)
 def main():
     generator = GPT2Generator(model_path='model/gpt2_cobacoba-20-24')  # Membuat instance generator GPT-2 dengan path model yang ditentukan
     
-    while True:  # Memulai loop untuk menerima input dari pengguna
+    while True:
         question = input("Masukkan pertanyaan (atau ketik 'exit' untuk keluar): ").strip()  # Meminta input pertanyaan dari pengguna
         
         if question.lower() == 'exit':  # Memeriksa apakah pengguna ingin keluar
