@@ -8,7 +8,6 @@ def main():
     generator = GPT2Generator(model_path='model/gpt2_cobacoba-20-24')
     
     while True:
-        # Menerima input pertanyaan dari pengguna
         question = input("Masukkan pertanyaan (atau ketik 'exit' untuk keluar): ").strip()
         
         if question.lower() == 'exit':
