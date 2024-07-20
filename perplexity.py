@@ -15,53 +15,58 @@ from utils import QADataset, logging_config  # Mengimpor QADataset dan logging_c
 # - Memuat data untuk pelatihan model menggunakan dataset tanya jawab khusus (QADataset)
 
 
-logging_config('log_model', 'generator_perplexity.log')
+# Konfigurasi logging
+logging.basicConfig(filename='generator_perplexity.log', level=logging.INFO)
 
-# Load the dataset
+# Fungsi untuk memfilter baris yang valid dari dataset
 def filter_valid_rows(row):
-    return len(row) == 2
+    return len(row) == 2  # Memastikan bahwa baris memiliki tepat 2 elemen
 
+# Memuat dataset
 name = 'clean'
 with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
-    filtered_rows = [row for row in reader if filter_valid_rows(row)]
+    filtered_rows = [row for row in reader if filter_valid_rows(row)]  # Memfilter baris yang valid
 
-df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
+df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])  # Membuat DataFrame dari baris yang difilter
 
-# Prepare the dataset
+# Mempersiapkan dataset
 model_path = 'model/fine_tuned_gpt2_model2'
-tokenizer = GPT2Tokenizer.from_pretrained(model_path)
-tokenizer.pad_token = tokenizer.eos_token
+tokenizer = GPT2Tokenizer.from_pretrained(model_path)  # Memuat tokenizer dari model yang telah disesuaikan
+tokenizer.pad_token = tokenizer.eos_token  # Menetapkan token padding sebagai token akhir (eos)
 
-# Combine question and answer into a single string for evaluation
-inputs = df['question'] + tokenizer.eos_token + df['answer']
+# Menggabungkan pertanyaan dan jawaban menjadi satu string untuk evaluasi
+inputs = df['question'] + tokenizer.eos_token + df['answer']  # Menggabungkan pertanyaan dan jawaban dengan token akhir
 
-dataset = QADataset(inputs, tokenizer, max_length=64)
+# Membuat dataset untuk QA
+dataset = QADataset(inputs, tokenizer, max_length=64)  # Menginisialisasi dataset dengan input dan tokenizer
 
-# Load model
-model = GPT2LMHeadModel.from_pretrained(model_path)
-model.eval()
+# Memuat model
+model = GPT2LMHeadModel.from_pretrained(model_path)  # Memuat model GPT-2 yang telah disesuaikan
+model.eval()  # Menetapkan mode evaluasi untuk model
 
-# Calculate perplexity
+# Fungsi untuk menghitung perplexity
 def calculate_perplexity(model, dataset, batch_size=6):
-    model.eval()
-    data_loader = DataLoader(dataset, batch_size=batch_size)
+    model.eval()  # Menetapkan mode evaluasi untuk model
+    data_loader = DataLoader(dataset, batch_size=batch_size)  # Membuat DataLoader dengan batch size yang ditentukan
     total_loss = 0.0
-    for i, batch in enumerate(data_loader):
+    for i, batch in enumerate(data_loader):  # Iterasi melalui DataLoader
         print(f"Processing batch {i}/{len(data_loader)}")
-        input_ids = batch['input_ids']
-        attention_mask = batch['attention_mask']
-        with torch.no_grad():
-            outputs = model(input_ids, attention_mask=attention_mask, labels=input_ids)
-            loss = outputs.loss
-            total_loss += loss.item()
-    avg_loss = total_loss / len(data_loader)
-    perplexity = torch.exp(torch.tensor(avg_loss))
+        input_ids = batch['input_ids']  # Mendapatkan input IDs dari batch
+        attention_mask = batch['attention_mask']  # Mendapatkan attention mask dari batch
+        with torch.no_grad():  # Tidak mengkalkulasi gradient
+            outputs = model(input_ids, attention_mask=attention_mask, labels=input_ids)  # Mendapatkan output model
+            loss = outputs.loss  # Mendapatkan loss dari output
+            total_loss += loss.item()  # Menambahkan loss ke total loss
+    avg_loss = total_loss / len(data_loader)  # Menghitung rata-rata loss
+    perplexity = torch.exp(torch.tensor(avg_loss))  # Menghitung perplexity dari rata-rata loss
     return perplexity.item()
 
+# Menghitung perplexity
 perplexity = calculate_perplexity(model, dataset)
 print(f'Perplexity: {perplexity}')
 
+# Mencatat hasil perplexity ke dalam log
 logging.info(f"Model: {model_path}")
 logging.info(f'Perplexity: {perplexity}')
 logging.info("------------------------------------------\n")
