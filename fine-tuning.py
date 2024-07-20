@@ -4,10 +4,6 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArgume
 # Mengimpor berbagai kelas dari library transformers untuk tokenisasi, pemuatan model GPT-2, pelatihan model, dan kolasi data
 from utils import QADataset  # Mengimpor kelas QADataset dari modul utils untuk dataset tanya jawab khusus
 
-# Kode ini mengimpor library dan modul yang dibutuhkan untuk memanipulasi data dengan pandas,
-# membaca dan menulis file CSV, serta mempersiapkan pelatihan model GPT-2 menggunakan dataset tanya jawab khusus (QADataset).
-
-
 # Fungsi untuk memfilter baris yang valid dari dataset
 def filter_valid_rows(row):
     return len(row) == 2  # Memastikan bahwa baris memiliki tepat 2 elemen
