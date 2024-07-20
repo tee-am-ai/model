@@ -26,7 +26,6 @@ class GPT2Generator:
         return answer
     
     def calculate_bleu_score(self, reference, generated):
-        # Tokenisasi referensi dan jawaban yang dihasilkan
         reference_tokens = self.tokenizer.tokenize(reference)
         generated_tokens = self.tokenizer.tokenize(generated)
         # Menghitung skor BLEU dengan smoothing
