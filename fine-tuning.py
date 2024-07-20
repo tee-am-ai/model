@@ -1,7 +1,12 @@
-import pandas as pd
-import csv
+import pandas as pd  # Mengimpor library pandas untuk manipulasi data
+import csv  # Mengimpor modul csv untuk membaca dan menulis file CSV
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
-from utils import QADataset
+# Mengimpor berbagai kelas dari library transformers untuk tokenisasi, pemuatan model GPT-2, pelatihan model, dan kolasi data
+from utils import QADataset  # Mengimpor kelas QADataset dari modul utils untuk dataset tanya jawab khusus
+
+# Kode ini mengimpor library dan modul yang dibutuhkan untuk memanipulasi data dengan pandas,
+# membaca dan menulis file CSV, serta mempersiapkan pelatihan model GPT-2 menggunakan dataset tanya jawab khusus (QADataset).
+
 
 # Load the dataset
 def filter_valid_rows(row):
