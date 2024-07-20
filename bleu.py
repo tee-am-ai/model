@@ -10,7 +10,6 @@ def main():
     example_question = "ibukota indonesia apa?"  # Pertanyaan contoh
     reference_answer = "jakarta"  # Jawaban referensi
 
-    # Menghasilkan jawaban menggunakan generator GPT-2
     generated_answer = generator.generate_answer(example_question, max_length=100)
     print(f"Question: {example_question}")
     print(f"Answer: {generated_answer}")
