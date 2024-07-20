@@ -4,24 +4,27 @@ from utils import logging_config, GPT2Generator  # Mengimpor fungsi logging_conf
 # Kode ini mengimpor modul logging dan dua komponen dari modul utils,
 # yaitu fungsi logging_config untuk konfigurasi logging dan kelas GPT2Generator untuk menghasilkan teks menggunakan model GPT-2.
 
+# Konfigurasi logging
+logging.basicConfig(filename='generator_bleu.log', level=logging.INFO)
 
-logging_config('log_model', 'generator_bleu.log')
-
-# Example usage:
+# Fungsi utama
 def main():
-    generator = GPT2Generator(model_path='gpt2_model_coba')
+    generator = GPT2Generator(model_path='gpt2_model_coba')  # Membuat instance generator GPT-2 dengan path model yang ditentukan
 
-    # Example usage to generate and evaluate BLEU score
-    example_question = "ibukota indonesia apa?"
-    reference_answer = "jakarta"
+    # Contoh penggunaan untuk menghasilkan dan mengevaluasi skor BLEU
+    example_question = "ibukota indonesia apa?"  # Pertanyaan contoh
+    reference_answer = "jakarta"  # Jawaban referensi
 
+    # Menghasilkan jawaban menggunakan generator GPT-2
     generated_answer = generator.generate_answer(example_question, max_length=100)
     print(f"Question: {example_question}")
     print(f"Answer: {generated_answer}")
 
+    # Menghitung skor BLEU antara jawaban referensi dan jawaban yang dihasilkan
     bleu_score = generator.calculate_bleu_score(reference_answer, generated_answer)
     print("BLEU Score:", bleu_score)
 
+    # Mencatat informasi ke dalam log
     logging.info(f"Model: {generator.model_path}")
     logging.info(f"Question: {example_question}")
     logging.info(f"Answer: {generated_answer}")
@@ -29,5 +32,6 @@ def main():
     logging.info(f"BLEU Score: {bleu_score}")
     logging.info("------------------------------------------\n")
 
+# Memastikan fungsi main() berjalan jika skrip dieksekusi secara langsung
 if __name__ == "__main__":
     main()
