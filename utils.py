@@ -12,9 +12,7 @@ class GPT2Generator:
         self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 
     def generate_answer(self, question, max_length):
-        # Mengencode pertanyaan dengan tokenizer dan menambahkan token EOS
         inputs = self.tokenizer.encode(question + self.tokenizer.eos_token, return_tensors='pt')
-        # Menghasilkan jawaban dengan model
         outputs = self.model.generate(inputs, max_length=max_length, pad_token_id=self.tokenizer.eos_token_id)
         # Mendecode hasil output dari model menjadi teks
         answer = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
