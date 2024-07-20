@@ -106,15 +106,15 @@ bleu_metric = evaluate.load("bleu", trust_remote_code=True)
         # "rouge": rouge,
     }
 
-# Trainer
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=dataset_train,
-    eval_dataset=dataset_test,
-    data_collator=data_collator,
-    compute_metrics=compute_metrics
-)
+# # Trainer
+# trainer = Trainer(
+#     model=model,
+#     args=training_args,
+#     train_dataset=dataset_train,
+#     eval_dataset=dataset_test,
+#     data_collator=data_collator,
+#     compute_metrics=compute_metrics
+# )
 
 # Train the model
 trainer.train()
