@@ -4,18 +4,12 @@ from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction  # Mengim
 import logging  # Mengimpor modul logging untuk mencatat log
 import os  # Mengimpor modul os untuk operasi terkait sistem operasi
 
-# Kode ini mengimpor library dan modul yang diperlukan untuk:
-# - Membuat dataset kustom dengan PyTorch
-# - Memuat dan menggunakan model GPT-2 dan tokenizer
-# - Menghitung skor BLEU untuk evaluasi teks
-# - Mencatat log dan melakukan operasi sistem
-
 # Mendefinisikan kelas GPT2Generator
 class GPT2Generator:
     def __init__(self, model_path='gpt2'):
         self.model_path = model_path  # Menyimpan path model
         self.model = GPT2LMHeadModel.from_pretrained(model_path)  # Memuat model GPT-2 dari path
-        self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)  # Memuat tokenizer GPT-2 dari path
+        self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 
     def generate_answer(self, question, max_length):
         # Mengencode pertanyaan dengan tokenizer dan menambahkan token EOS
