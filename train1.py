@@ -9,21 +9,11 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArgume
 from sklearn.model_selection import train_test_split as tts
 # Mengimpor fungsi untuk membagi dataset menjadi set pelatihan dan pengujian
 from utils import QADataset, logging_config
-# Mengimpor kelas QADataset dari modul utils untuk dataset tanya jawab khusus
-# dan fungsi logging_config untuk konfigurasi logging
-
-# Kode ini mengimpor library dan modul yang diperlukan untuk:
-# - Manipulasi data dan operasi numerik
-# - Logging dan pemrosesan file CSV
-# - Deep learning dengan PyTorch dan evaluasi model
-# - Tokenisasi dan pelatihan model GPT-2
-# - Membagi dataset dan menangani dataset tanya jawab khusus
-
+# Mengimpor kelas QADataset dari modul utils untuk dataset tanya jawab khusus dan fungsi logging_config untuk konfigurasi logging
 
 # Konfigurasi logging
 logging_config('log_model', 'generator_accuracy.log')
 
-# Fungsi untuk memfilter baris yang valid
 def filter_valid_rows(row):
     return len(row) == 2 and all(row)  # Memastikan baris memiliki tepat 2 elemen dan tidak ada elemen yang kosong
 
