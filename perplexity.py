@@ -1,10 +1,19 @@
-import pandas as pd
-import torch
-import csv
-import logging
-from transformers import GPT2Tokenizer, GPT2LMHeadModel
-from torch.utils.data import DataLoader
-from utils import QADataset, logging_config
+import pandas as pd  # Mengimpor library pandas untuk manipulasi data
+import torch  # Mengimpor library PyTorch untuk operasi tensor dan deep learning
+import csv  # Mengimpor modul csv untuk membaca dan menulis file CSV
+import logging  # Mengimpor modul logging untuk mencatat log
+from transformers import GPT2Tokenizer, GPT2LMHeadModel  # Mengimpor GPT2Tokenizer dan GPT2LMHeadModel dari library transformers
+from torch.utils.data import DataLoader  # Mengimpor DataLoader dari PyTorch untuk memuat data dalam batch
+from utils import QADataset, logging_config  # Mengimpor QADataset dan logging_config dari modul utils
+
+# Kode ini mengimpor library dan modul yang dibutuhkan untuk:
+# - Memanipulasi data dengan pandas
+# - Melakukan operasi tensor dengan PyTorch
+# - Membaca dan menulis file CSV
+# - Mencatat log
+# - Mempersiapkan tokenisasi dan pemuatan model GPT-2
+# - Memuat data untuk pelatihan model menggunakan dataset tanya jawab khusus (QADataset)
+
 
 logging_config('log_model', 'generator_perplexity.log')
 
