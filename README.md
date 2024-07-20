@@ -1,13 +1,16 @@
-# Model Latih tee-am-ai
+# Model Latih Tee-Am-AI
 
-Latih model tee-am-ai dengan gpt2
+Proyek ini bertujuan untuk melatih model GPT-2 menggunakan dataset khusus untuk menghasilkan jawaban berbasis pertanyaan. Di bawah ini adalah langkah-langkah untuk mengatur lingkungan, melatih model, dan menguji model yang telah dilatih.
 
-## Aktivasi virtual environment di cmd
+## 1. Mengatur Virtual Environment
 
-1. Buat virtual environment
+1. **Buat Virtual Environment**
+
+   Untuk membuat virtual environment baru, jalankan perintah berikut:
 
    ```bash
    python -m venv .venv
+
    ```
 
 2. Aktivasi virtual environment
