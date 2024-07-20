@@ -1,12 +1,18 @@
-import pandas as pd  # Mengimpor library pandas untuk manipulasi data
-import numpy as np  # Mengimpor library numpy untuk operasi numerik
-import logging  # Mengimpor modul logging untuk mencatat log
-import csv  # Mengimpor modul csv untuk memproses file CSV
-import torch  # Mengimpor library PyTorch untuk keperluan deep learning
-import evaluate  # Mengimpor library evaluate (kemungkinan HuggingFace Evaluate) untuk evaluasi model
-from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling  # Mengimpor berbagai kelas dari library transformers
-from sklearn.model_selection import train_test_split  # Mengimpor fungsi train_test_split dari scikit-learn untuk membagi dataset menjadi set pelatihan dan pengujian
-from utils import QADataset, logging_config  # Mengimpor QADataset dan logging_config dari modul utils
+import pandas as pd  # Import the pandas library for data manipulation
+import numpy as np  # Import the numpy library for numerical operations
+import logging  # Import the logging module to record logs
+import csv  # Import the csv module to process CSV files
+import torch  # Import the PyTorch library for deep learning purposes
+import evaluate  # Import the evaluate library (likely HuggingFace Evaluate) for model evaluation
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
+# Import various classes from the transformers library for tokenization, model loading, training, and data collation
+from sklearn.model_selection import train_test_split  # Import the train_test_split function from scikit-learn to split the dataset into training and test sets
+from utils import QADataset, logging_config  # Import QADataset and logging_config from the utils module
+
+# This code imports necessary libraries and modules for data manipulation, numerical operations, logging, CSV processing,
+# deep learning with PyTorch, model evaluation, and loading specific classes from the transformers library to fine-tune a GPT-2 model for a question-answering dataset.
+# It also imports a function to split datasets and custom utility functions for handling the Q&A dataset and logging configuration.
+
 
 logging_config('log_model', 'generator_accuracy.log')
 
