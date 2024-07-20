@@ -16,7 +16,7 @@ def main():
             break  # Menghentikan loop dan keluar dari program
         
         answer = generator.generate_answer(question, max_length=100)  # Menghasilkan jawaban menggunakan generator GPT-2
-        print(f"Jawaban: {answer}")  # Mencetak jawaban yang dihasilkan
+        print(f"Jawaban: {answer}")
 
         # Mencatat hasil ke dalam log
         logging.info(f"Model: {generator.model_path}")
