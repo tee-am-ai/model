@@ -1,13 +1,8 @@
-from torch.utils.data import Dataset  # Import the Dataset class from PyTorch to create a custom dataset
-from transformers import GPT2Tokenizer, GPT2LMHeadModel  # Import GPT2Tokenizer and GPT2LMHeadModel from the transformers library
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction  # Import functions to calculate BLEU scores from NLTK
-import logging  # Import the logging module to record logs
-import os  # Import the os module for operating system-related operations
-
-# This code imports necessary libraries and modules to create a custom dataset, tokenize and load a GPT-2 model,
-# calculate BLEU scores for evaluating text generation, log information, and perform operating system-related tasks.
-
-
+from torch.utils.data import Dataset
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+import logging
+import os
 
 # Define the GPT2Generator class
 class GPT2Generator:
@@ -16,12 +11,9 @@ class GPT2Generator:
         self.model = GPT2LMHeadModel.from_pretrained(model_path)
         self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 
-    def generate_answer(self, question, max_length=120):
-        # Encode the input question
+    def generate_answer(self, question, max_length):
         inputs = self.tokenizer.encode(question + self.tokenizer.eos_token, return_tensors='pt')
-        # Generate the answer using the model
         outputs = self.model.generate(inputs, max_length=max_length, pad_token_id=self.tokenizer.eos_token_id)
-        # Decode the generated answer
         answer = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         if answer.startswith(question):
@@ -39,21 +31,22 @@ class GPT2Generator:
 
 # Define the QADataset class
 class QADataset(Dataset):
-    def __init__(self, texts, tokenizer):
+    def __init__(self, texts, tokenizer, max_length):
         self.texts = texts
         self.tokenizer = tokenizer
+        self.max_length = max_length
 
     def __len__(self):
         return len(self.texts)
 
     def __getitem__(self, idx):
-        encodings = self.tokenizer(self.texts[idx], truncation=True, padding='max_length', max_length=64, return_tensors='pt')
+        encodings = self.tokenizer(self.texts[idx], truncation=True, padding=True, max_length=self.max_length, return_tensors='pt')
         input_ids = encodings.input_ids[0]
         attention_mask = encodings.attention_mask[0]
         return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
 
 
-Logging configuration
+# Logging configuration
 def logging_config(log_dir, log_filename):
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
