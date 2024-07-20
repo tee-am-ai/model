@@ -20,10 +20,7 @@ df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])  # Membuat Data
 model_name = 'gpt2'
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)  # Memuat tokenizer GPT-2
 tokenizer.pad_token = tokenizer.eos_token 
-
-# Menggabungkan pertanyaan dan jawaban menjadi satu string untuk pelatihan
-inputs = df['question'] + tokenizer.eos_token + df['answer']  # Menggabungkan pertanyaan dan jawaban dengan token akhir
-
+inputs = df['question'] + tokenizer.eos_token + df['answer']
 # Membuat dataset untuk QA
 dataset = QADataset(inputs, tokenizer, max_length=64)  # Menginisialisasi dataset dengan input dan tokenizer
 
