@@ -31,10 +31,10 @@ class GPT2Generator:
 
 # Define the QADataset class
 class QADataset(Dataset):
-    def __init__(self, texts, tokenizer, max_length):
-        self.texts = texts
-        self.tokenizer = tokenizer
-        self.max_length = max_length
+    # def __init__(self, texts, tokenizer, max_length):
+    #     self.texts = texts
+    #     self.tokenizer = tokenizer
+    #     self.max_length = max_length
 
     def __len__(self):
         return len(self.texts)
