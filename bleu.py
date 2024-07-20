@@ -1,8 +1,9 @@
-import os  # Import module for interacting with the operating system
-import logging  # Import module for logging messages
-from transformers import GPT2LMHeadModel, GPT2Tokenizer  # Import classes from the transformers library
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction  # Import functions for BLEU score calculation
-from utils import logging_config  # Import custom logging configuration from utils module
+import os  # Import modul untuk berinteraksi dengan sistem operasi
+import logging  # Import modul untuk logging pesan
+from transformers import GPT2LMHeadModel, GPT2Tokenizer  # Import kelas dari library transformers
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction  # Import fungsi untuk perhitungan skor BLEU
+from utils import logging_config  # Import konfigurasi logging custom dari modul utils
+
 
 
 logging_config('log_model', 'generator_bleu.log')
