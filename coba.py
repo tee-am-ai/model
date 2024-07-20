@@ -1,12 +1,13 @@
-import pandas as pd
-import numpy as np
-import logging
-import csv
-import torch
-import evaluate
+import pandas as pd  # Import modul pandas untuk manipulasi data
+import numpy as np  # Import modul numpy untuk operasi numerik
+import logging  # Import modul logging untuk mencatat log
+import csv  # Import modul csv untuk membaca dan menulis file CSV
+import torch  # Import pustaka PyTorch untuk operasi tensor
+import evaluate  # Import modul evaluate (biasanya untuk evaluasi model NLP)
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
-from sklearn.model_selection import train_test_split
-from utils import QADataset, logging_config
+# Import kelas dan fungsi dari pustaka transformers untuk memuat model dan tokenizer GPT-2, serta alat bantu pelatihan
+from sklearn.model_selection import train_test_split  # Import fungsi untuk membagi dataset menjadi data latih dan uji
+from utils import QADataset, logging_config  # Import konfigurasi logging dan kelas dataset Q&A dari modul utils
 
 logging_config('log_model', 'generator_accuracy.log')
 
