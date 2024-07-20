@@ -15,7 +15,6 @@ def main():
     print(f"Question: {example_question}")
     print(f"Answer: {generated_answer}")
 
-    # Menghitung skor BLEU antara jawaban referensi dan jawaban yang dihasilkan
     bleu_score = generator.calculate_bleu_score(reference_answer, generated_answer)
     print("BLEU Score:", bleu_score)
 
