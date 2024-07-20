@@ -9,9 +9,9 @@ def main():
     while True:
         question = input("Masukkan pertanyaan (atau ketik 'exit' untuk keluar): ").strip()
         
-        if question.lower() == 'exit':
-            print("Terminating the program...")
-            break
+        # if question.lower() == 'exit':
+        #     print("Terminating the program...")
+        #     break
         
         answer = generator.generate_answer(question, max_length=100)
         print(f"Jawaban: {answer}")
