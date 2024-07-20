@@ -1,12 +1,28 @@
-import pandas as pd
-import numpy as np
-import logging
-import csv
-import torch
-import evaluate
+import pandas as pd  # Mengimpor library pandas untuk manipulasi data dalam format DataFrame
+import numpy as np  # Mengimpor library numpy untuk operasi numerik
+import logging  # Mengimpor modul logging untuk mencatat log
+import csv  # Mengimpor modul csv untuk membaca dan menulis file CSV
+import torch  # Mengimpor library PyTorch untuk operasi tensor dan deep learning
+import evaluate  # Mengimpor library evaluate (kemungkinan untuk evaluasi model NLP, seperti dari HuggingFace)
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
+# Mengimpor berbagai kelas dari library transformers untuk:
+# - Tokenisasi (GPT2Tokenizer)
+# - Memuat model GPT-2 (GPT2LMHeadModel)
+# - Pelatihan model (Trainer dan TrainingArguments)
+# - Kolasi data untuk pelatihan (DataCollatorForLanguageModeling)
 from sklearn.model_selection import train_test_split as tts
+# Mengimpor fungsi untuk membagi dataset menjadi set pelatihan dan pengujian
 from utils import QADataset, logging_config
+# Mengimpor kelas QADataset dari modul utils untuk dataset tanya jawab khusus
+# dan fungsi logging_config untuk konfigurasi logging
+
+# Kode ini mengimpor library dan modul yang diperlukan untuk:
+# - Manipulasi data dan operasi numerik
+# - Logging dan pemrosesan file CSV
+# - Deep learning dengan PyTorch dan evaluasi model
+# - Tokenisasi dan pelatihan model GPT-2
+# - Membagi dataset dan menangani dataset tanya jawab khusus
+
 
 logging_config('log_model', 'generator_accuracy.log')
 
