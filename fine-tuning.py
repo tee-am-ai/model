@@ -1,12 +1,7 @@
-import pandas as pd  # Import modul pandas untuk manipulasi data dalam bentuk DataFrame
-import csv  # Import modul csv untuk membaca dan menulis file CSV
+import pandas as pd
+import csv
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
-# Import kelas dan fungsi dari pustaka transformers untuk memuat model dan tokenizer GPT-2, serta alat bantu pelatihan
-from utils import QADataset  # Import kelas QADataset dari modul utils untuk dataset tanya jawab khusus
-
-# Kode ini mengimpor modul yang dibutuhkan untuk memanipulasi data, membaca dan menulis file CSV,
-# serta memuat model GPT-2 dan tokenizer untuk pelatihan model menggunakan dataset tanya jawab khusus.
-
+from utils import QADataset
 
 # Load the dataset
 def filter_valid_rows(row):
@@ -27,7 +22,7 @@ tokenizer.pad_token = tokenizer.eos_token
 # Combine question and answer into a single string for training
 inputs = df['question'] + tokenizer.eos_token + df['answer']
 
-dataset = QADataset(inputs, tokenizer)
+dataset = QADataset(inputs, tokenizer, max_length=64)
 
 # Load model
 model = GPT2LMHeadModel.from_pretrained(model_name)
