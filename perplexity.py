@@ -23,9 +23,7 @@ df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])  # Membuat Data
 # Mempersiapkan dataset
 model_path = 'model/fine_tuned_gpt2_model2'
 tokenizer = GPT2Tokenizer.from_pretrained(model_path)
-tokenizer.pad_token = tokenizer.eos_token  # Menetapkan token padding sebagai token akhir (eos)
-
-# Menggabungkan pertanyaan dan jawaban menjadi satu string untuk evaluasi
+tokenizer.pad_token = tokenizer.eos_token 
 inputs = df['question'] + tokenizer.eos_token + df['answer']  # Menggabungkan pertanyaan dan jawaban dengan token akhir
 
 # Membuat dataset untuk QA
