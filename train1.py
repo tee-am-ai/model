@@ -15,7 +15,7 @@ from utils import QADataset, logging_config
 logging_config('log_model', 'generator_accuracy.log')
 
 def filter_valid_rows(row):
-    return len(row) == 2 and all(row)  # Memastikan baris memiliki tepat 2 elemen dan tidak ada elemen yang kosong
+    return len(row) == 2 and all(row)
 
 # Memuat dataset
 num = 'coba'
