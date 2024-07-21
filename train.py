@@ -28,10 +28,10 @@ dataset = QADataset(inputs, tokenizer, max_length=64)
 model = GPT2LMHeadModel.from_pretrained(model_name)
 
 # Define data collator
-# data_collator = DataCollatorForLanguageModeling(
-#     tokenizer=tokenizer,
-#     mlm=False,
-# )
+data_collator = DataCollatorForLanguageModeling(
+    tokenizer=tokenizer,
+    mlm=False,
+)
 
 # Define training arguments
 training_args = TrainingArguments(
