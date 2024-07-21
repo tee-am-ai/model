@@ -38,11 +38,11 @@ tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
 # Combine question and answer into a single string for training
-# inputs_train = train_df['question'] + tokenizer.eos_token + train_df['answer']
-# dataset_train = QADataset(inputs_train, tokenizer, max_length=64)
+inputs_train = train_df['question'] + tokenizer.eos_token + train_df['answer']
+dataset_train = QADataset(inputs_train, tokenizer, max_length=64)
 
-# inputs_test = test_df['question'] + tokenizer.eos_token + test_df['answer']
-# dataset_test = QADataset(inputs_test, tokenizer, max_length=64)
+inputs_test = test_df['question'] + tokenizer.eos_token + test_df['answer']
+dataset_test = QADataset(inputs_test, tokenizer, max_length=64)
 
 # Load model
 model = GPT2LMHeadModel.from_pretrained(model_name)
