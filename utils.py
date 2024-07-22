@@ -20,8 +20,7 @@ class GPT2Generator:
         # Decode the generated answer
         answer = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-        if answer.startswith(question):
-            answer = answer[len(question):].strip()
+       
 
         return answer
     
