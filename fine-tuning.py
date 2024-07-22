@@ -15,7 +15,7 @@ with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Prepare the dataset
-model_name = 'model/fine_tuned_gpt2_model1'
+model_name = 'model/fine_tuned_gpt2_model2'
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
@@ -35,7 +35,7 @@ data_collator = DataCollatorForLanguageModeling(
 
 # Define training arguments
 training_args = TrainingArguments(
-    output_dir='./result/fine_tuning_results2',
+    output_dir='./result/fine_tuning_results3',
     num_train_epochs=10,
     per_device_train_batch_size=8,
     warmup_steps=500,
@@ -58,6 +58,6 @@ trainer = Trainer(
 trainer.train()
 
 # Save the model
-model_path = 'model/fine_tuned_gpt2_model2'
+model_path = 'model/fine_tuned_gpt2_model4'
 model.save_pretrained(model_path)
 tokenizer.save_pretrained(model_path)
