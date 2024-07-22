@@ -47,14 +47,12 @@ class QADataset(Dataset):
         return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
 
 # Logging configuration
-def setup_logging(log_dir, log_filename):
-    # Create directory if it doesn't exist
+def logging_config(log_dir, log_filename):
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
 
-    # Configure logging
     logging.basicConfig(
-        filename=os.path.join(log_dir, log_filename),
+        filename=f'{log_dir}/{log_filename}',
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s'
     )
