@@ -13,9 +13,12 @@ def main():
             print("Terminating the program...")
             break
         
-        answer = generator.generate_answer(question, max_length=100)
-        print(f"Jawaban: {answer}")
-
+        try:
+            answer = generator.generate_answer(question, max_length=100)
+            print(f"Jawaban: {answer}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            
         # Log the result
         logging.info(f"Model: {generator.model_path}")
         logging.info(f"Pertanyaan: {question}")
