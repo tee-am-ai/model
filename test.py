@@ -4,21 +4,16 @@ from utils import logging_config, GPT2Generator
 logging_config('log_model', 'generator_test.log')
 
 def main():
-    generator = GPT2Generator(model_path='model/gpt2_cobacoba-20-24')
+    example_question = "ibukota indonesia apa?"
+    reference_answer = "jakarta"
+
+    generated_answer = generator.generate_answer(example_question, max_length=100)
+    print(f"Question: {example_question}")
+    print(f"Answer: {generated_answer}")
+
+    bleu_score = generator.calculate_bleu_score(reference_answer, generated_answer)
+    print("BLEU Score:", bleu_score)
     
-    while True:
-        question = input("Masukkan pertanyaan (atau ketik 'exit' untuk keluar): ").strip()
-        
-        if question.lower() == 'exit':
-            print("Terminating the program...")
-            break
-        
-        try:
-            answer = generator.generate_answer(question, max_length=100)
-            print(f"Jawaban: {answer}")
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            
         # Log the result
         logging.info(f"Model: {generator.model_path}")
         logging.info(f"Pertanyaan: {question}")
