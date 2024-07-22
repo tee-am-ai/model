@@ -13,12 +13,12 @@ class GPT2Generator:
         self.tokenizer = GPT2Tokenizer.from_pretrained(model_path)
 
     def generate_answer(self, question, max_length=120):
-        # # Encode the input question
-        # inputs = self.tokenizer.encode(question + self.tokenizer.eos_token, return_tensors='pt')
-        # # Generate the answer using the model
-        # outputs = self.model.generate(inputs, max_length=max_length, pad_token_id=self.tokenizer.eos_token_id)
-        # # Decode the generated answer
-        # answer = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        # Encode the input question
+        inputs = self.tokenizer.encode(question + self.tokenizer.eos_token, return_tensors='pt')
+        # Generate the answer using the model
+        outputs = self.model.generate(inputs, max_length=max_length, pad_token_id=self.tokenizer.eos_token_id)
+        # Decode the generated answer
+        answer = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         if answer.startswith(question):
             answer = answer[len(question):].strip()
