@@ -10,13 +10,13 @@ def filter_valid_rows(row):
 name = 'clean'
 file_path = f'datasets/{name}.csv'
 
-# try:
-#     with open(file_path, 'r', encoding='utf-8') as file:
-#         reader = csv.reader(file, delimiter='|')
-#         filtered_rows = [row for row in reader if filter_valid_rows(row)]
+try:
+    with open(file_path, 'r', encoding='utf-8') as file:
+        reader = csv.reader(file, delimiter='|')
+        filtered_rows = [row for row in reader if filter_valid_rows(row)]
 
-#     df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
-#     print(df.head())  # Display the first few rows of the DataFrame to verify
+    df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
+    print(df.head())  # Display the first few rows of the DataFrame to verify
 
 except FileNotFoundError:
     print(f"File not found: {file_path}")
