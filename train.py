@@ -36,10 +36,10 @@ dataset = QADataset(inputs, tokenizer, max_length=64)
 # Load model
 model = GPT2LMHeadModel.from_pretrained(model_name)
 
-# Define the data collator
+# Define data collator
 data_collator = DataCollatorForLanguageModeling(
-    tokenizer=tokenizer,  # Assuming `tokenizer` is previously defined
-    mlm=False,  # Masked Language Modeling, set to `True` for MLM tasks (e.g., BERT)
+    tokenizer=tokenizer,
+    mlm=False,
 )
 
 # Define training arguments
