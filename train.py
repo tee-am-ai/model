@@ -8,20 +8,11 @@ def filter_valid_rows(row):
     return len(row) == 2
 
 name = 'clean'
-file_path = f'datasets/{name}.csv'
+with open(f'datasets/{name}.csv', 'r', encoding='utf-8') as file:
+    reader = csv.reader(file, delimiter='|')
+    filtered_rows = [row for row in reader if filter_valid_rows(row)]
 
-try:
-    with open(file_path, 'r', encoding='utf-8') as file:
-        reader = csv.reader(file, delimiter='|')
-        filtered_rows = [row for row in reader if filter_valid_rows(row)]
-
-    df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
-    print(df.head())  # Display the first few rows of the DataFrame to verify
-
-except FileNotFoundError:
-    print(f"File not found: {file_path}")
-except Exception as e:
-    print(f"An error occurred: {e}")
+df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Prepare the dataset
 model_name = 'gpt2'
