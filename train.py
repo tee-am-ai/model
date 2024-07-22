@@ -45,13 +45,6 @@ training_args = TrainingArguments(
     save_total_limit=2,
 )
 
-# Create Trainer
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=dataset,
-    data_collator=data_collator,
-)
 
 # Train the model
 trainer.train()
