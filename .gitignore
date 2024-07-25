@@ -166,3 +166,7 @@ result*/
 log*/
 datasets*/
 trainer-fatwa/dataset*/
+trainer-fatwa/dialogs.csv
+trainer-fatwa/eval_data.txt
+trainer-fatwa/train_data.txt
+trainer-fatwa/chat_data.json
