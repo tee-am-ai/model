@@ -105,3 +105,17 @@ def compute_metrics(eval_pred):
         "bleu": bleu,
         # "rouge": rouge,
     }
+
+# Trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=dataset_train,
+    eval_dataset=dataset_test,
+    data_collator=data_collator,
+    compute_metrics=compute_metrics
+)
+
+# Train the model
+trainer.train()
+
