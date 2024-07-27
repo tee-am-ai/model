@@ -127,8 +127,3 @@ tokenizer.save_pretrained(path)
 # Evaluate model
 eval_results = trainer.evaluate()
 
-# Print evaluation results, including accuracy
-print(f"Evaluation results: {eval_results}")
-logging.info(f"Model: {path}")
-logging.info(f"Evaluation results: {eval_results}")
-logging.info("------------------------------------------\n")
