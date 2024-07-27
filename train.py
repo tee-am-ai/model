@@ -53,6 +53,3 @@ trainer = Trainer(
     train_dataset=dataset,
     data_collator=data_collator,
 )
-
-# Train the model
-trainer.train()
