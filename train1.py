@@ -119,7 +119,3 @@ trainer = Trainer(
 # Train the model
 trainer.train()
 
-# Save the model
-path = f'model/gpt2_coba{num}-{epoch}-{batch_size}'
-model.save_pretrained(path)
-tokenizer.save_pretrained(path)
