@@ -72,9 +72,3 @@ training_args = TrainingArguments(
     # eval_strategy="epoch",
     # eval_steps=500,
 )
-
-# Load metrics
-# accuracy_metric = evaluate.load("accuracy", trust_remote_code=True)
-bleu_metric = evaluate.load("bleu", trust_remote_code=True)
-# rouge_metric = evaluate.load("rouge", trust_remote_code=True)
-
