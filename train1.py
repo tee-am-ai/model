@@ -37,6 +37,3 @@ model_name = 'gpt2'
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
-# Combine question and answer into a single string for training
-inputs_train = train_df['question'] + tokenizer.eos_token + train_df['answer']
-dataset_train = QADataset(inputs_train, tokenizer, max_length=64)
