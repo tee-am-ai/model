@@ -123,3 +123,7 @@ trainer.train()
 path = f'model/gpt2_coba{num}-{epoch}-{batch_size}'
 model.save_pretrained(path)
 tokenizer.save_pretrained(path)
+
+# Evaluate model
+eval_results = trainer.evaluate()
+
