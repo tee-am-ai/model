@@ -29,3 +29,30 @@ class GPT2Generator:
         return bleu_score
 
 
+# Define the QADataset class
+class QADataset(Dataset):
+    def __init__(self, texts, tokenizer, max_length):
+        self.texts = texts
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+
+    def __len__(self):
+        return len(self.texts)
+
+    def __getitem__(self, idx):
+        encodings = self.tokenizer(self.texts[idx], truncation=True, padding=True, max_length=self.max_length, return_tensors='pt')
+        input_ids = encodings.input_ids[0]
+        attention_mask = encodings.attention_mask[0]
+        return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": input_ids}
+
+
+# Logging configuration
+def logging_config(log_dir, log_filename):
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+
+    logging.basicConfig(
+        filename=f'{log_dir}/{log_filename}',
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
