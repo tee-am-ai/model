@@ -39,3 +39,29 @@ def infer(inp):
 device = "cuda" if torch.cuda.is_available(
 ) else "mps" if torch.backends.mps.is_available() else "cpu"
 
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+tokenizer.add_special_tokens({"pad_token": "<pad>", 
+                                "bos_token": "<startofstring>",
+                                "eos_token": "<endofstring>"})
+
+tokenizer.add_tokens(["<bot>:"])
+
+model = GPT2LMHeadModel.from_pretrained("gpt2")
+model.resize_token_embeddings(len(tokenizer))
+
+model = model.to(device)
+
+chatData = ChatData("./chat_data.json", tokenizer)
+chatData =  DataLoader(chatData, batch_size=64)
+
+model.train()
+
+optim = Adam(model.parameters(), lr=1e-3)
+
+print("training .... ")
+train(chatData, model, optim)
+
+print("infer from model : ")
+while True:
+#   inp = input()
+  print(infer("hey"))
